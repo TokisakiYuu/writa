@@ -102,3 +102,13 @@ dist
 
 # TernJS port file
 .tern-port
+
+
+# 临时文件
+temp.js
+
+# MacOS X 目录的自定义属性，例如文件们的图标位置或者是背景色的选择
+.DS_Store
+
+# 用户上传资源的存放点
+upload
