@@ -1,0 +1,8 @@
+@import "./index2.less";
+body {
+    display: flex;
+    justify-content: flex-start;
+    color: rgb(255, 0, 0);
+    width: calc(100% - 1px);
+    text-align: center;
+}
