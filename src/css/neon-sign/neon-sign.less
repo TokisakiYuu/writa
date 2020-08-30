@@ -1,0 +1,48 @@
+@neon-text-color1: #3498db;
+@neon-text-color2: #f39c12;
+@neon-text-color3: #e74c3c;
+@neon-text-color4: #9b59b6;
+// 霓虹灯文字效果样式
+#neonSignText {
+    width: 304px;
+    height: 90px;
+    .text {
+        font-size: 50px;
+        font-weight: bold;
+        text-transform: uppercase;
+        fill: none;
+        stroke-width: 1px;
+        stroke-dasharray: 90 310;
+        animation: stroke 6s linear infinite;
+    }
+    
+    .text-1 {
+        stroke: @neon-text-color1;
+        text-shadow: 0 0 5px @neon-text-color1;
+        animation-delay: -1.5s;
+    }
+
+    .text-2 {
+        stroke: @neon-text-color2;
+        text-shadow: 0 0 5px @neon-text-color2;
+        animation-delay: -3s;
+    }
+
+    .text-3 {
+        stroke: @neon-text-color3;
+        text-shadow: 0 0 5px @neon-text-color3;
+        animation-delay: -4.5s;
+    }
+
+    .text-4 {
+        stroke: @neon-text-color4;
+        text-shadow: 0 0 5px @neon-text-color4;
+        animation-delay: -6s;
+    }
+
+    @keyframes stroke {
+        100% {
+            stroke-dashoffset: -400;
+        }
+    }
+}

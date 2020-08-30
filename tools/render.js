@@ -30,7 +30,12 @@ function compilePugFile(path) {
 function renderHTML(sign, data) {
     let path = `${pugDir}/${sign}.pug`;
     let templeteFn = compilePugFile(path);
-    return templeteFn(data);
+    return templeteFn({
+        ...data,
+        tools: {
+            ...require("./string")
+        }
+    });
 }
 
 module.exports = renderHTML;

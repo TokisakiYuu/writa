@@ -1,0 +1,59 @@
+@import "./common.less";
+// 霓虹灯文字特效
+@import "neon-sign/neon-sign.less";
+
+
+// 编辑器样式
+#editor {
+    .editor-wrap {
+        width: 100%;
+        max-width: 874px;
+        margin: 0 auto;
+        box-sizing: border-box;
+        // 文章标题
+        .editor-title {
+            height: 50px;
+            input {
+                outline: none;
+                border: none;
+                width: 100%;
+                height: 100%;
+                background-color: @base-bg-color;
+                font-size: 1.2rem;
+                caret-color: #5785a5;
+                color: white;
+                &::-webkit-input-placeholder {
+                    color: #8590a6;
+                }
+            }
+        }
+        // 编辑器控制面板
+        .editor-control {
+            display: flex;
+            flex-direction: row-reverse;
+            padding: 10px;
+            button {
+                width: 80px;
+                height: 30px;
+                border-radius: 5px;
+                outline: none;
+                border: none;
+                background-color: #2196F3;
+                color: white;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+
+// 编辑器功能图标样式
+.editor-function-item {
+    .Editable-control .Zi, .Editable-control span {
+        vertical-align: middle;
+    }
+    
+    .Editable-control .Zi {
+        fill: #8590a6;
+    }
+}

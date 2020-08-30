@@ -1,0 +1,29 @@
+extend base.pug
+include ./neon-sign
+
+block style
+    +importCss("/styles/editor.css")
+
+block content
+    #app
+        #logo.panel
+            +neonSign()
+        #editor.panel
+            .editor-wrap#ckeditor
+                .editor-title
+                    input(type="text" v-model="title" placeholder="在此输入文章标题...")
+                .editor-ckeditor-container
+                    ckeditor(v-model="editorData" :config="editorConfig")
+                .editor-control
+                    button#release(@click="release()") 发布
+block footer
+    #footer
+        p#hitokoto "温暖的灵魂终将相遇"
+        p #{"Designed & Powerd by "}
+            a(href="mailto:tokisakiyuu@qq.com?subject=from%20blog") TokisakiYuu
+        p 
+            a(href="http://beian.miit.gov.cn/") 蜀ICP备18021334号
+
+block script
+    +importScript("/editor.bundle.js")
+        

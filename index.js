@@ -1,6 +1,6 @@
 
 const { resolve } = require("path");
-const startupMode = process.env.NODE_ENV || "production";
+const startupMode = process.env.NODE_ENV || "development";
 
 /**
  * 初始化全局变量
@@ -32,7 +32,7 @@ if(startupMode === "development") {
     .run((err, stats) => {
         if (err) throw err;
         if (stats.hasErrors() || stats.hasWarnings()) {
-            console.log(stats.toString());
+          console.log(stats.toString());
         }
     })
 }
@@ -40,3 +40,4 @@ if(startupMode === "development") {
 
 // 启动服务。在这之后http请求将到达程序中
 startApp();
+console.log("模式："+ startupMode);

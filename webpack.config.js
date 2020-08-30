@@ -5,9 +5,10 @@ module.exports = {
     mode: "development",    // 开发模式
 
     entry: {
-        script: "./src/index.js",
-        other: "./src/other.js",
-        css: "./src/css/index.css"
+        common: ["./src/css/common.less" ,"./src/common.js"],
+        home: ["./src/css/home.less", "./src/home.js"],
+        editor: ["./src/css/editor.less", "./src/editor.js"],
+        article: ["./src/css/article.less", "./src/article.js"]
     },
 
     output: {
@@ -29,10 +30,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: ["css-loader", "postcss-loader"]
-                })
+                use: ["css-loader", "postcss-loader"]
             },
             {
                 test: /\.js$/,
@@ -49,11 +47,18 @@ module.exports = {
     },
 
     plugins:[
-        new ExtractTextPlugin("styles.css")
+        new ExtractTextPlugin("styles/[name].css")
     ],
 
     // source map
     devtool: "inline-source-map",
+
+    // 搜寻模块的规则
+    resolve: {
+        alias: {
+            'vue': 'vue/dist/vue.esm.js' // 加载vue compiler版源码供浏览器使用
+        }
+    }
 
     // // 开发服务器配置
     // devServer: {

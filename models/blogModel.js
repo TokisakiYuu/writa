@@ -1,5 +1,4 @@
-const mongoose = require('mongoose')
-const { Schema } = mongoose;
+const { Schema, model } = require('mongoose')
 
 let blogSchema = new Schema({
     // 文章id
@@ -23,14 +22,15 @@ let blogSchema = new Schema({
         default: Date.now
     },
     // 是否显示文章
-    hidden: Boolean,
-    // 其它数据
-    meta: {
-        // 点赞数
-        votes: Number,
-        // 收藏数
-        favs:  Number
-    }
+    hidden: {
+        type: Boolean,
+        default: false
+    },
+    // 点赞数
+    votes: {
+        type: Number,
+        default: 0
+    },
 });
 
-module.exports = mongoose.model("blog", blogSchema);
+module.exports = model("blog", blogSchema);
