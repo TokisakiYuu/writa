@@ -2,12 +2,10 @@ const path = require('path');
 const Koa = require('koa');
 const serve = require('koa-static');
 const bodyParser = require('koa-bodyparser');
-const { db, router } = require('./middlewares');
+// middlewares
+const router = require("./middlewares/router");
 
 const app = new Koa();
-
-// 数据库
-app.use(db);
 app
 // 静态页面
     .use(serve(path.resolve(__dirname, "resources")))

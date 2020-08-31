@@ -9,7 +9,7 @@ const startupMode = process.env.NODE_ENV || "development";
 global.YUULOG = {
   root: resolve(__dirname, "./"),
   mode: startupMode,
-  templatesDir: resolve(__dirname, "./templates"),
+  templatesDir: resolve(__dirname, "./frontend/templates"),
   resourcesDir: resolve(__dirname, "./resources")
 };
 

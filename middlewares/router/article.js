@@ -25,5 +25,14 @@ router
         console.log(`新增一篇文章 id: ${id}`);
         ctx.retJson({result: "ok"});
     })
+    .get("/", async (ctx, next) => {
+        ctx.template("article", {
+            article: {
+                title: "张三",
+                body: 23
+            }
+        });
+        return next();
+    })
 
 module.exports = router;

@@ -1,7 +1,5 @@
 const router = require("koa-router")();
 const htmlRender = require("../../tools/render");
-const home = require('./home');
-
 // 加载本文件夹下的所有路由器
 const subRouters = require('../../requireFolder')(__dirname);
 
@@ -25,8 +23,7 @@ router
         return nextLayer
             ? next()
             : ctx.end();
-    })
-    .use("/", home.routes());
+    });
 
 // 挂载页面路由
 Object.keys(subRouters).map(name => {
