@@ -1,27 +1,16 @@
-extend base.pug
-
-block style
-    +importCss("/styles/article.css")
-
-block content
-     #app
-        #logo.panel
-            | TokisakiYuu
-        #article.panel
-            .article-wrap
-                article
-                    header
-                        p.text= article.title
-                        //- p.date= tools.dateFormat(new Date(article.date))
-                    content!= article.body
-
-
-block footer
-    #footer
-        p#hitokoto "温暖的灵魂终将相遇"
-        p= "Designed & Powerd by "
-            a(href="mailto:tokisakiyuu@qq.com?subject=from%20blog") TokisakiYuu
-        p 
-            a(href="http://beian.miit.gov.cn/") 蜀ICP备18021334号
-
-block script
+doctype html
+html(lang="zh-cn")
+    head
+        meta(charset="utf-8")
+        meta(name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
+        title yuulog
+        //- css
+        link(rel="stylesheet", href="/styles/article.css")
+    body
+        header
+            .article-summary
+            .article-matedata
+        section#content
+            article
+        footer

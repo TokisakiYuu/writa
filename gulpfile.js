@@ -19,7 +19,7 @@ function doPackage(cb) {
 }
 
 // 监听文件变化
-watch(['./src/**'], doPackage);
+watch(['./frontend/**'], doPackage);
 
 exports.default = series(
     doPackage

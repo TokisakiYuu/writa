@@ -1,18 +1,40 @@
-@import "./common.less";
-// 霓虹灯文字特效
-@import "neon-sign/neon-sign.less";
+// init
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    font-size: 16px;
+}
 
-#article {
-    .article-wrap {
-        max-width: 630px;
-        height: 800px;
-        margin: 0 auto;
-        // background-color: gainsboro;
+// header
+header {
+    height: 68vh;
+    background-color: rgb(140, 201, 255);
+    display: grid;
+    grid-area: "summary matedata";
+    grid-template-rows: 100%;
+    grid-template-columns: 1fr 1fr;
+    // 标题和简述
+    .article-summary {
+        background-color: rgb(255, 75, 75);
     }
+    // 文章统计数据
+    .article-matedata {
+        background-color: rgb(255, 174, 174);
+    }
+}
 
-    header {
-        .text {
-            font-size: 40px;
-        }
-    }
+
+// content
+#content {
+    min-height: 100vh;
+    background-color: rgb(189, 189, 189);
+}
+
+// footer
+footer {
+    height: 300px;
+    background-color: rgb(140, 255, 169);
 }
