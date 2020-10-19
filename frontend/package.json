@@ -1,5 +1,5 @@
 {
-  "name": "yuulog-core",
+  "name": "yuulog-frontend",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,10 +7,5 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "tokisakiyuu",
-  "license": "MIT",
-  "dependencies": {
-    "ansi-escapes": "^4.3.1",
-    "cli-cursor": "^3.1.0",
-    "shelljs": "^0.8.4"
-  }
+  "license": "MIT"
 }
