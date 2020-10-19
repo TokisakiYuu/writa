@@ -4,6 +4,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
     mode: "development",    // 开发模式
 
+    context: path.resolve(__dirname, "src"),
     entry: {
         common: ["./src/css/common.less" ,"./src/common.js"],
         home: ["./src/css/home.less", "./src/home.js"],
