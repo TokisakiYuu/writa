@@ -1,13 +1,18 @@
-var gulp = require("gulp");
-var sourcemaps = require("gulp-sourcemaps");
-var babel = require("gulp-babel");
-var concat = require("gulp-concat");
+const gulp = require("gulp");
+const sourcemaps = require("gulp-sourcemaps");
+const ts = require('gulp-typescript');
 
 gulp.task("default", function () {
-  return gulp.src("src/scripts/common.js")
+  return gulp.src("src/scripts/*.ts")
     .pipe(sourcemaps.init())
-    .pipe(babel())
-    .pipe(concat("common.js"))
-    .pipe(sourcemaps.write())               // write 不传参数是内联，否则传入路径
+    .pipe(ts({
+      module: "commonjs",
+      target: "es5",
+      allowJs: true,
+      checkJs: true,
+      alwaysStrict: true,
+
+    }))
+    .pipe(sourcemaps.write("sourcemap"))               // write 不传参数是内联，否则传入路径
     .pipe(gulp.dest("dist"));
 });
