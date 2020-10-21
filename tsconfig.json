@@ -19,7 +19,6 @@
       "allowJs": true,
       "diagnostics": true,
       "declaration": true,
-      "declarationDir": "./file",
   },
   "include": [
       "src/**/*"
