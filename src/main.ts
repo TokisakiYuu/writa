@@ -1,3 +1,3 @@
-let say:String = "hello";
+import sayHello from "./lib";
 
-console.log(say);
+sayHello();
