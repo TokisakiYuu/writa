@@ -23,6 +23,14 @@ module.exports = {
             {
                 test: /\.tsx?$/,
                 loader: "awesome-typescript-loader"
+            },
+            {
+                test: /\.less$/,
+                use: [
+                    {loader: "less-loader"},
+                    {loader: "postcss-loader"},
+                    {loader: "css-loader"}
+                ]
             }
         ]
     },
