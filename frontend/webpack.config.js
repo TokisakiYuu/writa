@@ -2,8 +2,8 @@ const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
-    mode: "production",    // 生产模式
-    // mode: "development",   // 开发模式
+    // mode: "production",    // 生产模式
+    mode: "development",   // 开发模式
 
     entry: {
         "/js/common": "./src/scripts/common.ts"
@@ -11,7 +11,8 @@ module.exports = {
 
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "[name].[fullhash].js",
+        // filename: "[name].[fullhash].js",
+        filename: "[name].js",
         libraryTarget: "umd",
         library: "MyLib",
         umdNamedDefine: true
