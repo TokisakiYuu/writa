@@ -112,3 +112,6 @@ temp.js
 
 # 用户上传资源的存放点
 upload
+
+# Webpack打包分析
+compilation-stats.json

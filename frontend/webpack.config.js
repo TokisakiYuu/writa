@@ -1,18 +1,19 @@
 const path = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const MetaInfoPlugin = require('./plugins/MetaInfoPlugin')
 
 module.exports = {
     // mode: "production",    // 生产模式
     mode: "development",   // 开发模式
 
     entry: {
-        "/js/common": "./src/scripts/common.ts"
+        "/js/common": "./src/scripts/common.ts",
+        "/js/lib": "./src/script/lib.ts"
     },
 
     output: {
         path: path.resolve(__dirname, "dist"),
-        // filename: "[name].[fullhash].js",
-        filename: "[name].js",
+        filename: "[name].[fullhash].js",
+        // filename: "[name].js",
         libraryTarget: "umd",
         library: "MyLib",
         umdNamedDefine: true
@@ -24,25 +25,20 @@ module.exports = {
                 test: /\.tsx?$/,
                 loader: "awesome-typescript-loader"
             },
-            {
-                test: /\.less$/,
-                use: [
-                    {loader: "less-loader"},
-                    {loader: "postcss-loader"},
-                    {loader: "css-loader"}
-                ]
-            }
+            // {
+            //     test: /\.less$/,
+            //     use: [
+            //         {loader: "less-loader"},
+            //         {loader: "postcss-loader"},
+            //         {loader: "css-loader"}
+            //     ]
+            // }
         ]
     },
 
-    // optimization: {
-    //     minimizer: [
-    //         new UglifyJsPlugin({
-    //             sourceMap: true,
-    //             parallel: true,
-    //         }),
-    //     ]
-    // },
+    plugins: [
+        new MetaInfoPlugin({ filename: 'dist/meta.json' }),
+    ],
 
     devtool: "source-map",
 

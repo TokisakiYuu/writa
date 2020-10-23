@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npm run clean && webpack --config webpack.config.js",
+    "build-profile": "npm run clean && webpack --config webpack.config.js --json > compilation-stats.json",
     "clean": "rimraf dist",
     "dev": "npm run clean && webpack --config webpack.config.js --watch"
   },
