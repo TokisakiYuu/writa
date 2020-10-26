@@ -1,21 +1,21 @@
 {
   "compilerOptions": {
-      "module": "es2015",
-      "target": "es5",
-      "lib": ["es2015", "dom"],
-      "noImplicitAny": true,
-      "sourceMap": true,
-      "outDir": "dist",
-      "alwaysStrict": true,
-      "strict": true,
-      "checkJs": true,
-      "allowJs": true,
-      "diagnostics": true,
+    "module": "commonjs",
+    "target": "es5",
+    "lib": ["es2015", "dom"],
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "outDir": "dist/js",
+    "alwaysStrict": true,
+    "strict": true,
+    "checkJs": true,
+    "allowJs": true,
+    "diagnostics": true,
   },
   "include": [
-      "src/**/*"
+    "src/scripts/**/*"
   ],
   "awesomeTypescriptLoaderOptions": {
-    
+
   }
 }

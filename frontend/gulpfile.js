@@ -1,17 +1,18 @@
 const path = require("path");
-const {src, dest} = require("gulp");
+const {src, dest, lastRun, series, watch} = require("gulp");
 const less = require('gulp-less');
 const LessAutoprefix = require('less-plugin-autoprefix');
-const ts = require('gulp-typescript');
-const rollup = require('gulp-rollup');
 const sourcemaps = require('gulp-sourcemaps');
 
+// Webpack
+const webpack = require('webpack');
+const webpackConfig = require('./webpack.config');
+
 const distDir = path.resolve(__dirname, "./dist");
-const tsProject = ts.createProject('tsconfig.json');
 
 // 编译CSS代码
 function styles() {
-    return src("./src/styles/*.less")
+    return src("./src/styles/*.less", {since: lastRun(styles)})
         .pipe(sourcemaps.init())
         .pipe(less({
             plugins: [new LessAutoprefix({ browsers: ['last 2 versions'] })]
@@ -21,10 +22,27 @@ function styles() {
 }
 
 // 编译TypeScript代码
-// function scripts() {
-//     return src("./src/scripts/**/*.ts")
-//         .pipe(rollup())
-//         .pipe(dest(`${distDir}/js/`));
-// }
+function scripts() {
+    return new Promise((resolve, reject) => {
+        webpack(webpackConfig)
+            .run((err, stats) => {
+                if(err) {
+                    return reject(err);
+                }
+                const info = stats.toJson();
+                if(stats.hasErrors()) {
+                    return reject(info.errors);
+                }
+                if (stats.hasWarnings()) {
+                    console.warn(info.warnings);
+                }
+                console.log(stats.toString({
+                    chunks: false,  // Makes the build much quieter
+                    colors: true    // Shows colors in the console
+                }));
+                return resolve();
+            });
+    });
+}
 
-exports.default = scripts;
+exports.default = series(scripts, styles);
