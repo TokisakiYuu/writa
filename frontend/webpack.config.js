@@ -2,8 +2,9 @@ const path = require('path');
  
 module.exports = {
     mode: "development",   // 开发模式
+    context: __dirname,
     entry: {
-        common: __dirname + "/src/scripts/common.ts"
+        common: "/src/scripts/common.ts"
     },
     module: {
         rules: [{
