@@ -6,7 +6,7 @@ module.exports = {
     context: context,
     entry: () => {
         let modules = {};
-        js.map(entry => modules[basename(entry, extname(entry))] = entry);
+        js.files.map(entry => modules[basename(entry, extname(entry))] = entry);
         return modules;
     },
     output: {

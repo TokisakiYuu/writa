@@ -1,16 +1,34 @@
 module.exports = {
   context: __dirname + "/src",
-  template: [
-    "/pages/index.pug"
-  ],
-  js: [
-    "/scripts/common.ts",
-  ],
-  css: [
-    "/styles/shell.less"
-  ],
-  resource: [
-    "/resource/**/*"
-  ],
-  favicon: "/favicon.ico"
+  
+  template: {
+    files: [
+      "/pages/index.pug"
+    ],
+    watch: "/pages"
+  },
+  js: {
+    files: [
+      "/scripts/common.ts",
+    ],
+    watch: "/scripts"
+  },
+  css: {
+    files: [
+      "/styles/shell.less"
+    ],
+    watch: "/styles"
+  },
+  resource: {
+    files: [
+      "/resource/**/*"
+    ],
+    watch: "/resource"
+  },
+  other: {
+    files: [
+      "/*"
+    ],
+    watch: "/*"
+  }
 }

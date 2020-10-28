@@ -17,7 +17,7 @@ const distDir = path.resolve(__dirname, "../dist");
 
 // 编译CSS代码
 function styles() {
-  return src(assetsConfig.css.map(path => `${context}/${path}`))
+  return src(assetsConfig.css.files.map(path => `${context}/${path}`))
     .pipe(less({
       plugins: [new LessAutoprefix({ browsers: ['last 2 versions'] })]
     }))
@@ -55,13 +55,13 @@ function scripts() {
 
 // 移动资源
 function resource() {
-    return src(assetsConfig.resource.map(path => `${context}/${path}`))
+    return src(assetsConfig.resource.files.map(path => `${context}/${path}`))
         .pipe(dest(`${distDir}/resource/`));
 }
 
 // 编译PUG
 function template() {
-    return src(assetsConfig.template.map(path => `${context}/${path}`))
+    return src(assetsConfig.template.files.map(path => `${context}/${path}`))
         .pipe(pug({client: true}))
         .pipe(dest(`${distDir}/template/`));
 }

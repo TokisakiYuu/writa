@@ -38,14 +38,11 @@ function webpackWatch() {
   });
 }
 
-/**
- * @todo 这边watch路径改成assets配置
- */
 // gulp 监听变动
 function startWatch() {
-  watch(`${context}/styles/`, styles);
-  watch(`${context}/resource/`, resource);
-  watch(`${context}/pages/`, template);
+  watch(`${context}${assetsConfig.css.watch}`, styles);
+  watch(`${context}${assetsConfig.resource.watch}`, resource);
+  watch(`${context}${assetsConfig.template.watch}`, template);
 }
 
 module.exports = {
