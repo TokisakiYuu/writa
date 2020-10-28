@@ -115,3 +115,6 @@ upload
 
 # Webpack打包分析
 compilation-stats.json
+
+#awesome-typescript-loader的缓存文件
+.awcache
