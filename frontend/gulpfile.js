@@ -1,9 +1,11 @@
+const fs = require("fs");
 const path = require("path");
 const {src, dest, series, watch} = require("gulp");
 const less = require('gulp-less');
 const minifyCSS = require('gulp-minify-css');
 const LessAutoprefix = require('less-plugin-autoprefix');
 const sourcemaps = require('gulp-sourcemaps');
+const pug = require('./lib/gulp-pug-umd');
 
 const noop = () => {};
 
@@ -93,10 +95,24 @@ function resource() {
     return resource();
 }
 
+// 编译PUG
+function template() {
+    function template() {
+        return src(["./src/pages/**/*.pug"])
+            .pipe(pug({client: true}))
+            .pipe(dest(`${distDir}/pages/`));
+    }
+    if(isWatchMode) {
+        watch(["./src/pages/**/*.pug"], template);
+    }
+    return template();
+}
+
 
 module.exports = {
     styles,
     scripts,
     resource,
-    build: series(scripts, styles, resource)
+    template,
+    build: series(scripts, template, styles, resource)
 }
