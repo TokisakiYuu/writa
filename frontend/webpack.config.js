@@ -1,28 +1,38 @@
-const path = require('path');
+const {basename, extname} = require('path');
+const {context, js} = require("./assets.config.js");
  
 module.exports = {
     mode: "development",   // 开发模式
-    context: __dirname,
-    entry: {
-        common: "/src/scripts/common.ts"
-    },
-    module: {
-        rules: [{
-            test: /\.tsx?$/,
-            use: [
-                {loader: 'awesome-typescript-loader'}
-            ]
-        }]
+    context: context,
+    entry: () => {
+        let modules = {};
+        js.map(entry => modules[basename(entry, extname(entry))] = entry);
+        return modules;
     },
     output: {
-        path: path.resolve(__dirname, "dist/js"),
+        path: __dirname + "/dist/js",
         filename: "[name].js",
         publicPath: "/",
         library: "YuuLog",
         libraryTarget: "umd"
     },
-
     devtool: "inline-source-map",
+    
+    module: {
+        rules: [{
+            test: /\.(ts|tsx|js|jsx)$/,
+            loader: 'awesome-typescript-loader',
+            options: {
+                useCache: true,
+                forceIsolatedModules: true,
+                reportFiles: [
+                    "src/**/*.{ts,tsx,js,jsx}"
+                ]
+            }
+        }]
+    },
+
+    plugins: [],
 
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx'],

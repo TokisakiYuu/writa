@@ -5,17 +5,14 @@
     "lib": ["es2015", "dom"],
     "noImplicitAny": true,
     "sourceMap": true,
-    "outDir": "dist/js",
     "alwaysStrict": true,
     "strict": true,
     "checkJs": true,
     "allowJs": true,
     "diagnostics": true,
+    "jsx": "react"
   },
   "include": [
-    "src/scripts/**/*"
-  ],
-  "awesomeTypescriptLoaderOptions": {
-
-  }
+      "src/**/*"
+  ]
 }
