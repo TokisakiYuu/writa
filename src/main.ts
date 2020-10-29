@@ -1,25 +1,19 @@
-import selfsigned from "selfsigned";
+import fs from "fs";
+import {resolve} from "path";
+import http from "http";
+import http2 from "http2";
+import Koa from "koa";
 
-let arrts = [
-  {name: "commonName", value: "YuuLog"},
-  {name: "countryName", value: "China"},
-  {name: "localityName", value: "SiChuan"},
-  {name: "stateOrProvinceName", value: "ChengDu"},
-  {name: "organizationName", value: "TokisakiYuu(personal)"},
-  {name: "organizationalUnitName", value: "Mr."},
-  {name: "emailAddress", value: "tokisakiyuu@qq.com"}
-];
-const perms:SelfsignedPerms = selfsigned.generate(arrts, {clientCertificate: true});
+const app = new Koa();
 
-console.log(perms);
+// response
+app.use(ctx => {
+  ctx.body = 'Hello Koa';
+});
 
+http.createServer(app.callback()).listen(8442);
 
-setTimeout(() => {
-  console.log(123);
-  
-}, 99999);
-
-// http2.createSecureServer({
-//   allowHTTP1: true,
-  
-// })
+http2.createSecureServer({
+  key: fs.readFileSync(resolve(__dirname, "../assets/privkey.pem")),
+  cert: fs.readFileSync(resolve(__dirname, "../assets/server.pem")),
+}, app.callback()).listen(443);
