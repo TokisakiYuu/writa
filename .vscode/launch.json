@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "node",
+      "type": "pwa-node",
       "request": "launch",
       "name": "Debug启动",
       "skipFiles": [
@@ -16,7 +16,11 @@
         "--require",
         "ts-node/register"
       ],
-      "program": "${workspaceFolder}\\src\\main.ts"
+      "program": "${workspaceFolder}/src/main.ts",
+      "resolveSourceMapLocations": [
+        "${workspaceFolder}/**",
+        "!**/node_modules/**"
+      ]
     }
   ]
 }
