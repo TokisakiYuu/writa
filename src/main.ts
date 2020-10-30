@@ -6,14 +6,19 @@ import Koa from "koa";
 
 const app = new Koa();
 
-// response
 app.use(ctx => {
   ctx.body = 'Hello Koa';
 });
 
-http.createServer(app.callback()).listen(8442);
 
-http2.createSecureServer({
-  key: fs.readFileSync(resolve(__dirname, "../assets/privkey.pem")),
-  cert: fs.readFileSync(resolve(__dirname, "../assets/server.pem")),
-}, app.callback()).listen(443);
+const httpServer = http.createServer(app.callback());
+
+const server = http2.createSecureServer({
+  key: fs.readFileSync(resolve(__dirname, "../assets/localhost+2-key.pem")),
+  cert: fs.readFileSync(resolve(__dirname, "../assets/localhost+2.pem")),
+  allowHTTP1: true
+}, app.callback());
+
+server.listen(443, () => {
+  console.log("服务器已启动");
+});
