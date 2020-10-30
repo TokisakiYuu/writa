@@ -2,14 +2,14 @@
   "name": "yuulog",
   "version": "1.0.0",
   "description": "yuu blog service",
-  "main": "main.ts",
+  "main": "./index.js",
+  "types": "./dist/types/main.d.ts",
   "scripts": {
-    "prestart": "npm run build",
-    "start": "set NODE_ENV=production && node index.js",
-    "dev": "set NODE_ENV=development && node --require ts-node/register src/main.ts",
-    "prebuild": "npm run clean",
-    "build": "tsc --build tsconfig.json",
-    "clean": "rimraf dist file",
+    "start": "npm run build && set NODE_ENV=production && node index.js",
+    "dev": "set NODE_ENV=development && ts-node --files --project tsconfig.json src/main.ts",
+    "build": "npm run clean && tsc --build tsconfig.json",
+    "build:watch": "npm run clean && tsc --build tsconfig.json -w",
+    "clean": "node scripts/clean",
     "prepublishOnly": "npm run build",
     "postpublish": "npm run clean",
     "postinstall": "node scripts/postinstall.js"
@@ -30,8 +30,15 @@
     "url": "https://github.com/TokisakiYuu/Yuulog/issues"
   },
   "homepage": "https://github.com/TokisakiYuu/Yuulog#readme",
-  "dependencies": {},
+  "dependencies": {
+    "koa": "^2.13.0",
+    "mkcert": "^1.4.0",
+    "selfsigned": "^1.10.8"
+  },
   "devDependencies": {
+    "@types/koa": "^2.11.6",
+    "@types/mkcert": "^1.2.0",
+    "@types/node": "^14.14.6",
     "rimraf": "^3.0.2",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.3"

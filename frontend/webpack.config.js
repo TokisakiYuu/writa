@@ -1,88 +1,43 @@
-const path = require('path');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-
+const {basename, extname} = require('path');
+const {context, js} = require("./assets.config.js");
+ 
 module.exports = {
-    mode: "development",    // 开发模式
-
-    context: path.resolve(__dirname, "src"),
-    entry: {
-        common: ["./src/css/common.less" ,"./src/common.js"],
-        home: ["./src/css/home.less", "./src/home.js"],
-        editor: ["./src/css/editor.less", "./src/editor.js"],
-        article: ["./src/css/article.less", "./src/article.js"]
+    mode: "development",   // 开发模式
+    context: context,
+    entry: () => {
+        let modules = {};
+        js.files.map(entry => modules[basename(entry, extname(entry))] = entry);
+        return modules;
     },
-
     output: {
-        path: path.resolve(__dirname, "dist"),
-        filename: "[name].bundle.js",
+        path: __dirname + "/dist/js",
+        filename: "[name].js",
         publicPath: "/",
-        library: "您有一份新的源码请注意查收",
+        library: "YuuLog",
         libraryTarget: "umd"
     },
-
+    devtool: "inline-source-map",
+    
     module: {
-        rules: [
-            {
-                test: /\.less$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: ["css-loader", "postcss-loader", "less-loader"]
-                })
-            },
-            {
-                test: /\.css$/,
-                use: ["css-loader", "postcss-loader"]
-            },
-            {
-                test: /\.js$/,
-                exclude: /(node_modules|bower_components)/,
-                use: {
-                  loader: 'babel-loader',
-                  options: {
-                    presets: ['@babel/preset-env'],
-                    plugins: ['@babel/transform-runtime']
-                  }
-                }
+        rules: [{
+            test: /\.(ts|tsx|js|jsx)$/,
+            loader: 'awesome-typescript-loader',
+            options: {
+                useCache: true,
+                forceIsolatedModules: true,
+                reportFiles: [
+                    "src/**/*.{ts,tsx,js,jsx}"
+                ]
             }
-        ]
+        }]
     },
 
-    plugins:[
-        new ExtractTextPlugin("styles/[name].css")
-    ],
+    plugins: [],
 
-    // source map
-    devtool: "inline-source-map",
-
-    // 搜寻模块的规则
     resolve: {
+        extensions: ['.ts', '.tsx', '.js', '.jsx'],
         alias: {
-            'vue': 'vue/dist/vue.esm.js' // 加载vue compiler版源码供浏览器使用
+            'vue': 'vue/dist/vue.esm.js'
         }
     }
-
-    // // 开发服务器配置
-    // devServer: {
-    //     contentBase: path.join(__dirname, "frontend"),
-    //     compress: true,
-    //     host: "0.0.0.0",
-    //     https: true,
-    //     index: 'index.html',
-    //     port: 9000,
-    //     watchContentBase: { poll: true }, // 监听contentBase所配置的路径下的文件的变化，有变化会自动刷新打开的页面(轮询方式)
-    //     headers: {
-    //         "X-Webpack-Dev": "yes"
-    //     },
-    //     color: true,
-    //     open: true,             // 随devServer启动浏览器
-    //     openPage: "/",          // 从浏览器打开页面
-    //     overlay: {              // 显示警告和错误
-    //         warnings: true,
-    //         errors: true
-    //     },
-    //     progress: true          // 将运行进度输出到控制台
-    // },
-
-    // // 源码变动监听
-    // watch: true
 }

@@ -112,3 +112,12 @@ temp.js
 
 # 用户上传资源的存放点
 upload
+
+# Webpack打包分析
+compilation-stats.json
+
+#awesome-typescript-loader的缓存文件
+.awcache
+
+# secret file
+*.pem

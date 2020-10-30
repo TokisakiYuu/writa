@@ -7,16 +7,14 @@
     {
       "type": "pwa-node",
       "request": "launch",
-      "name": "Debug启动",
-      "skipFiles": [
-        "${workspaceFolder}/node_modules/**/*.js",
-        "<node_internals>/**"
-      ],
+      "name": "ts-node调试",
       "runtimeArgs": [
-        "--require",
-        "ts-node/register"
+          "-r",
+          "ts-node/register"
       ],
-      "program": "${workspaceFolder}/src/main.ts",
+      "args": [
+          "${workspaceFolder}/src/main.ts"
+      ],
       "resolveSourceMapLocations": [
         "${workspaceFolder}/**",
         "!**/node_modules/**"
