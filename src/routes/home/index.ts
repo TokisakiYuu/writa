@@ -9,6 +9,6 @@ const router = new Router();
 
 router
     .get("/", async (ctx:Koa.ParameterizedContext, next:Koa.Next) => {
-        ctx.sendHTML("index", {name: "艾吉"});
+        await ctx.sendHTML("index", {name: "艾吉"});
     })
 export default router.routes();

@@ -6,7 +6,7 @@
   "types": "./dist/types/src/main.d.ts",
   "scripts": {
     "start": "npm run build && node index.js",
-    "dev": "ts-node --files --project tsconfig.json src/main.ts",
+    "dev": "ts-node --files --project tsconfig.json src/main.ts development",
     "build": "npm run clean && tsc --build tsconfig.json",
     "build:watch": "npm run clean && tsc --build tsconfig.json -w",
     "clean": "node scripts/clean",
