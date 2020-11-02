@@ -1,5 +1,5 @@
 const {basename, extname} = require('path');
-const {context, js} = require("./assets.config.js");
+const {context, distDir, js} = require("./assets.config.js");
  
 module.exports = {
     mode: "development",   // 开发模式
@@ -10,7 +10,7 @@ module.exports = {
         return modules;
     },
     output: {
-        path: __dirname + "/dist/js",
+        path: distDir + "/js",
         filename: "[name].js",
         publicPath: "/",
         library: "YuuLog",

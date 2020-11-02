@@ -40,9 +40,9 @@ function webpackWatch() {
 
 // gulp 监听变动
 function startWatch() {
-  watch(`${context}${assetsConfig.css.watch}`, styles);
-  watch(`${context}${assetsConfig.resource.watch}`, resource);
-  watch(`${context}${assetsConfig.template.watch}`, template);
+  watch(`${context}${assetsConfig.css.watch}`, {events: ["all"]}, styles);
+  watch(`${context}${assetsConfig.resource.watch}`, {events: ["all"]}, resource);
+  watch(`${context}${assetsConfig.template.watch}`, {events: ["all"]}, template);
 }
 
 module.exports = {

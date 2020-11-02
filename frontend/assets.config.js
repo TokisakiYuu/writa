@@ -1,5 +1,6 @@
 module.exports = {
   context: __dirname + "/src",
+  distDir: __dirname + "/dist",
   
   template: {
     files: [

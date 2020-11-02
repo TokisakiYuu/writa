@@ -12,8 +12,7 @@ const webpackConfig = require('../webpack.config');
 // assets.config
 const assetsConfig = require("../assets.config");
 const context = assetsConfig.context;
-
-const distDir = path.resolve(__dirname, "../dist");
+const distDir = assetsConfig.distDir;
 
 // 编译CSS代码
 function styles() {
