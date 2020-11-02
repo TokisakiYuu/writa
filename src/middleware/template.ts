@@ -15,7 +15,7 @@ export default function() {
       ctx.type = "html";
       let template: (local: any) => string;
       try {
-        template = await import(`${distDir}/template/${templateName}`)
+        template = require(`${distDir}/template/${templateName}`);
       } catch (error) {
         ctx.body = "未找到HTML模板";
         return;
