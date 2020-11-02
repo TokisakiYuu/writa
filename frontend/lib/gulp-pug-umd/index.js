@@ -41,12 +41,12 @@ module.exports = function gulpPug(options) {
               }]
             ]
           }).code + `if(typeof module !== "undefined"){module.exports=exports.default;}`
-          let minifyResult = UglifyJS.minify(compiled);
-          if(minifyResult.error) {
-            throw minifyResult.error;
-          }else {
-            compiled = minifyResult.code;
-          }
+          // let minifyResult = UglifyJS.minify(compiled);
+          // if(minifyResult.error) {
+          //   throw minifyResult.error;
+          // }else {
+          //   compiled = minifyResult.code;
+          // }
         } else {
           compiled = pug.compile(contents, opts)(data);
         }

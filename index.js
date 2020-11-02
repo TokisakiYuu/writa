@@ -1,2 +1,3 @@
-const main = require("./dist/main");
+const main = require("./dist/src/main");
 module.exports = main;
+

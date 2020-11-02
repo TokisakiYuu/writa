@@ -5,12 +5,12 @@ import {
     buildWatch
 } from "../../frontend";
 
-const startMode = process.env.NODE_ENV;
+const developmentMode = process.argv.includes("development");
 
 export function attachFrontend() {
-    if(startMode === "development") {
+    if(developmentMode) {
         buildWatch();
-    }else if(startMode === "production") {
+    }else {
         buildProd();
     }
 }

@@ -9,8 +9,6 @@ const router = new Router();
 
 router
     .get("/", async (ctx:Koa.ParameterizedContext, next:Koa.Next) => {
-        ctx.body = "this home - YuuLog";
-        return next();
+        ctx.sendHTML("index", {name: "艾吉"});
     })
-
 export default router.routes();

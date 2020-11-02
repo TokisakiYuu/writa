@@ -6,7 +6,7 @@ module.exports = {
   httpsPort: 443,
   httpPort: 80,
   ssl: {
-    key: fs.readFileSync(resolve(__dirname, "./assets/secret/localhost+2-key.pem")).toString(),
-    cert: fs.readFileSync(resolve(__dirname, "./assets/secret/localhost+2.pem")).toString(),
+    key: fs.readFileSync(resolve(process.cwd(), "./assets/secret/localhost+2-key.pem")).toString(),
+    cert: fs.readFileSync(resolve(process.cwd(), "./assets/secret/localhost+2.pem")).toString(),
   }
 }
