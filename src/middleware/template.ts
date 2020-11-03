@@ -5,9 +5,9 @@ import Koa from "koa";
 import { assetsConfig } from "../../frontend";
 
 const { distDir } = assetsConfig;
-const developmentMode = process.argv.includes("development");
+const isDevelopmentMode = process.argv.includes("development");
 
-// 闭包返回中间件，以便后面做缓存
+// 闭包返回中间件
 export default function() {
   // 柯里化sendHTML函数以避免在下面的回调中定义局部函数
   function sendHTMLChunk(ctx:Koa.ParameterizedContext) {
@@ -15,7 +15,7 @@ export default function() {
       ctx.type = "html";
       let template: (local: any) => string;
       try {
-        template = require(`${distDir}/template/${templateName}`);
+        template = importTemplate(`${distDir}/template/${templateName}`, isDevelopmentMode);
       } catch (error) {
         ctx.body = "未找到HTML模板";
         return;
@@ -36,11 +36,12 @@ export default function() {
 }
 
 // 引入模版函数
-async function importTemplate(
+function importTemplate(
   name: string,
   developmentMode: boolean
-): Promise<Function> {
-  return new Promise((resolve, reject) => {
-
-  });
+): any {
+  if(developmentMode) {
+    delete require.cache[require.resolve(name)];
+  }
+  return require(name);
 }

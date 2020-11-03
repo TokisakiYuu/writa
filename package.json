@@ -31,8 +31,12 @@
   },
   "homepage": "https://github.com/TokisakiYuu/Yuulog#readme",
   "dependencies": {
+    "@types/koa-mount": "^4.0.0",
+    "@types/koa-static": "^4.0.1",
     "koa": "^2.13.0",
+    "koa-mount": "^4.0.0",
     "koa-router": "^9.4.0",
+    "koa-static": "^5.0.0",
     "mkcert": "^1.4.0",
     "selfsigned": "^1.10.8"
   },
