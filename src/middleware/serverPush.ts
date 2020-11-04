@@ -13,7 +13,7 @@ function push(stream: ServerHttp2Stream, url: string, path: string) {
   if(!stream.pushAllowed) return;
   stream.pushStream({ [HTTP2_HEADER_PATH]: url }, (err, pushStream) => {
     if(err) return console.error(err);
-    if(pushStream.aborted || pushStream.closed) return;
+    if(pushStream.aborted || pushStream.closed || pushStream.destroyed) return;
     const {fileDescriptor, headers} = getFileDescriptor(path);
     if(!fileDescriptor) return;
     pushStream.respondWithFD(fileDescriptor, headers);
@@ -23,7 +23,7 @@ function push(stream: ServerHttp2Stream, url: string, path: string) {
     pushStream.on("end", noop);
     pushStream.on("error", (err) => {
       pushStream.close();
-      return err; // 假装我已经处理了这个错误
+      return err; // 创建一个引用，假装我已经处理了这个错误 :)
     });
   })
 }
