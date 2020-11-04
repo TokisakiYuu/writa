@@ -37,6 +37,7 @@
     "koa-mount": "^4.0.0",
     "koa-router": "^9.4.0",
     "koa-static": "^5.0.0",
+    "mime": "^2.4.6",
     "mkcert": "^1.4.0",
     "selfsigned": "^1.10.8"
   },
