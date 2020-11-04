@@ -6,6 +6,8 @@ import mime from "mime";
 
 const { HTTP2_HEADER_PATH } = http2.constants;
 
+function noop(): void {}
+
 // 向http2流推送文件数据
 function push(stream: ServerHttp2Stream, url: string, path: string) {
   if(!stream.pushAllowed) return;
@@ -16,10 +18,13 @@ function push(stream: ServerHttp2Stream, url: string, path: string) {
     if(!fileDescriptor) return;
     pushStream.respondWithFD(fileDescriptor, headers);
     pushStream.on("close", () => fs.closeSync(fileDescriptor));
+    pushStream.on("finish", noop)
+    pushStream.on("aborted", noop)
+    pushStream.on("end", noop);
     pushStream.on("error", (err) => {
-      console.error(err);
       pushStream.close();
-    })
+      return err; // 假装我已经处理了这个错误
+    });
   })
 }
 
