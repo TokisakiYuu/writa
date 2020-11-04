@@ -61,7 +61,10 @@ function resource() {
 // 编译PUG
 function template() {
     return src(assetsConfig.template.files.map(path => `${context}/${path}`))
-        .pipe(pug({client: true}))
+        .pipe(pug({
+            client: true,
+            minify: true
+        }))
         .pipe(dest(`${distDir}/template/`));
 }
 

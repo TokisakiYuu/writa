@@ -43,5 +43,5 @@ function importTemplate(
   if(developmentMode) {
     delete require.cache[require.resolve(name)];
   }
-  return require(name);
+  return require(name).default;
 }

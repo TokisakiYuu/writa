@@ -6,7 +6,9 @@ const ext = require('replace-ext');
 const PluginError = require('plugin-error');
 const log = require('fancy-log');
 const babel = require("@babel/core");
-const UglifyJS = require("uglify-js");
+// depends: 
+// babel-preset-minify
+// @babel/plugin-transform-modules-umd
 
 module.exports = function gulpPug(options) {
   const opts = Object.assign({}, options);
@@ -36,17 +38,10 @@ module.exports = function gulpPug(options) {
           compiled = babel.transformSync(`${compiled}\n\nexport default template;`, {
             moduleId: "pugTemplate",
             plugins: [
-              ["@babel/plugin-transform-modules-umd", {
-                exactGlobals: true
-              }]
-            ]
-          }).code + `if(typeof module !== "undefined"){module.exports=exports.default;}`
-          // let minifyResult = UglifyJS.minify(compiled);
-          // if(minifyResult.error) {
-          //   throw minifyResult.error;
-          // }else {
-          //   compiled = minifyResult.code;
-          // }
+              ["@babel/plugin-transform-modules-umd"]
+            ],
+            presets: opts.minify? [["minify"]] : []
+          }).code;
         } else {
           compiled = pug.compile(contents, opts)(data);
         }
