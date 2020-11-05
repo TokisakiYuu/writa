@@ -13,7 +13,7 @@ module.exports = {
         path: distDir + "/js",
         filename: "[name].js",
         publicPath: "/",
-        library: "YuuLog",
+        library: "YuuTypescriptWebStarter",
         libraryTarget: "umd"
     },
     devtool: "inline-source-map",

@@ -2,7 +2,7 @@ import koa from "koa";
 import { resolve } from "path";
 import mount from "koa-mount";
 import serve from "koa-static";
-import { assetsConfig } from "../../frontend";
+import assetsConfig from "../../frontend/assets.config";
 
 const PUBLIC_ROOT = "/static"
 let staticPath = resolve(assetsConfig.distDir);

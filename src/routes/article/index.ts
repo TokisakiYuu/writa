@@ -9,7 +9,7 @@ const router = new Router();
 
 router
     .get("/", async (ctx:Koa.ParameterizedContext, next:Koa.Next) => {
-        ctx.body = "this article - YuuLog";
+        ctx.body = "The Article";
         return next();
     })
 

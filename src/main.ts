@@ -1,4 +1,4 @@
-import {createYuuLogServer} from "./lib/server";
+import {createServer} from "./lib/server";
 import webConfig from "../web.config";
 import router from "./middleware/router";
 import logger from "./middleware/logger";
@@ -6,7 +6,7 @@ import resource from "./middleware/static";
 import serverPush from "./middleware/serverPush";
 
 (async () => {
-    const {app, port, isHttp2} = await createYuuLogServer(webConfig);
+    const {app, port, isHttp2} = await createServer(webConfig);
     app
         // 日志
         .use(logger())
@@ -16,5 +16,5 @@ import serverPush from "./middleware/serverPush";
         .use(router())
         // 静态资源
         .use(resource())
-    console.log(`YuuLog server(${isHttp2? 'http2':'http'}) is listening port ${port} ...`);
+    console.log(`Server(${isHttp2? 'http2':'http'}) is listening port ${port} ...`);
 })();

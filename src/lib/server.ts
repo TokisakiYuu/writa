@@ -7,14 +7,14 @@ interface SSLOptions {
     cert: string | undefined
 }
 
-interface YuuLogWebConfig {
+interface WebConfig {
     domain?: string[],
     httpsPort: number,
     httpPort: number,
     ssl: SSLOptions | undefined
 }
 
-interface YuuLogServerDetail {
+interface ServerDetail {
     app: Koa<Koa.DefaultState, Koa.DefaultContext>,
     port: number,
     isHttp2: boolean
@@ -42,21 +42,21 @@ export async function createHTTPApp(port: number): Promise<Koa> {
     });
 }
 
-export async function createYuuLogServer(webConfig: YuuLogWebConfig): Promise<YuuLogServerDetail> {
+export async function createServer(webConfig: WebConfig): Promise<ServerDetail> {
     let {httpPort, httpsPort, ssl} = webConfig;
     let detail: any = {};
-    let YuuLogApp: Koa<Koa.DefaultState, Koa.DefaultContext>;
+    let App: Koa<Koa.DefaultState, Koa.DefaultContext>;
     const httpApp   = await createHTTPApp(httpPort);
     if(ssl && ssl.key && ssl.cert) {
-        YuuLogApp = await createHTTP2ServerApp(httpsPort, ssl);
+        App = await createHTTP2ServerApp(httpsPort, ssl);
         httpApp.use(ctx => ctx.redirect(`https://${ctx.host}${ctx.url}`));
         detail.port = httpsPort;
         detail.isHttp2 = true;
     } else {
-        YuuLogApp = httpApp;
+        App = httpApp;
         detail.port = httpPort;
         detail.isHttp2 = false;
     }
-    detail.app = YuuLogApp;
+    detail.app = App;
     return detail;
 }
