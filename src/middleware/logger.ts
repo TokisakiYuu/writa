@@ -6,6 +6,6 @@ export default function() {
         let startTime = Date.now();
         await next();
         let endTime = Date.now();
-        console.log(`[${method.toUpperCase()}] ${url} ${(endTime - startTime) / 1000}ms`);
+        console.log(`[${method.toUpperCase()}] ${url}          ${endTime - startTime}ms`);
     }
 }
