@@ -12,7 +12,7 @@
     "clean": "node scripts/clean",
     "prepublishOnly": "npm run build",
     "postpublish": "npm run clean",
-    "postinstall": "node scripts/postinstall.js"
+    "postinstall": "node scripts/postinstall.js && cd frontend && npm install"
   },
   "repository": {
     "type": "git",

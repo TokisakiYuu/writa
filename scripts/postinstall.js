@@ -1,1 +1,1 @@
-console.log(`${process.env.npm_package_name} 的所有依赖模块安装完毕`);
+console.log(`${process.env.npm_package_name} install complate`);
