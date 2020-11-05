@@ -1,3 +1,3 @@
-# Yuulog
+# Yuu Typescript Web Starter
 
-*我的个人博客*
+TypeScript web app boilerplate, no db, ready to work. (Http2, Node.js, TypeScript, Koa, VanillaJs, Pug, Less, Webpack)
