@@ -1,6 +1,7 @@
 /**
- * 主页
+ * Home
  */
+
 import { resolve } from "path";
 import Koa from "koa";
 import Router from "koa-router";

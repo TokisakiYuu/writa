@@ -2,18 +2,6 @@ import http2 from "http2";
 import http from "http";
 import Koa from "koa";
 
-interface SSLOptions {
-    key: string | undefined,
-    cert: string | undefined
-}
-
-interface WebConfig {
-    domain?: string[],
-    httpsPort: number,
-    httpPort: number,
-    ssl: SSLOptions | undefined
-}
-
 interface ServerDetail {
     app: Koa<Koa.DefaultState, Koa.DefaultContext>,
     port: number,

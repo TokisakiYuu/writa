@@ -3,6 +3,7 @@ import http from "http";
 import http2, { ServerHttp2Stream } from "http2";
 import Koa from "koa";
 import mime from "mime";
+import { distDir } from "../../frontend/assets.config";
 
 const { HTTP2_HEADER_PATH } = http2.constants;
 

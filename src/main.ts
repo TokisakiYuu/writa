@@ -4,17 +4,17 @@ import router from "./middleware/router";
 import logger from "./middleware/logger";
 import resource from "./middleware/static";
 import serverPush from "./middleware/serverPush";
+import Koa from "koa";
 
 (async () => {
     const {app, port, isHttp2} = await createServer(webConfig);
     app
-        // 日志
         .use(logger())
-        // 服务器推支持
+        // HTTP/2 Server Push support
         .use(serverPush())
-        // 路由
+        // http request handers
         .use(router())
-        // 静态资源
+        // web app public assets transfer
         .use(resource())
     console.log(`Server(${isHttp2? 'http2':'http'}) is listening port ${port} ...`);
 })();
