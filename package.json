@@ -20,8 +20,6 @@
     "dev": "ts-node --files --project tsconfig.json src/main.ts development",
     "build": "npm run clean && tsc --build tsconfig.json",
     "clean": "node scripts/clean",
-    "prepublishOnly": "npm run build",
-    "postpublish": "npm run clean",
     "postinstall": "node scripts/postinstall.js && cd frontend && npm install"
   },
   "dependencies": {
