@@ -6,20 +6,25 @@ import serve from "koa-static";
 import webConfig from "../../web.config";
 const { publicPathMap } = webConfig;
 
-// TODO: #3 (!!项目已无法正常运行) 添加静态目录映射配置，并实现批量挂载 @TokisakiYuu
+const mounts: Koa.Middleware[] = [];
+
 export default function() {
-  const mergeApp = new Router();
   for(let rootName in publicPathMap) {
     let publicPath = publicPathMap[rootName];
     const resourceApp = new Koa();
     resourceApp.use(serve(resolve(publicPath)))
-    mergeApp.use(
-      "/",
-      mount(
-        rootName,
-        resourceApp
-      )
-    );
+    mounts.push(mount(rootName, resourceApp));
   }
-  return mergeApp.routes();
+
+  return async (ctx:Koa.ParameterizedContext, next:Koa.Next) => {
+    let curr: number = 0;
+    let middle = mounts[curr];
+    async function upstream(): Promise<void> {
+      middle = mounts[++curr];
+      if(typeof middle !== "function") return;
+      return await middle(ctx, upstream);
+    }
+    await middle(ctx, upstream);
+    return next();
+  }
 }

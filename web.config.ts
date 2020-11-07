@@ -19,7 +19,8 @@ const config: WebConfig = {
     cert: sslCert,
   },
   publicPathMap: {
-    "/static": distDir
+    "/static": distDir,
+    "/source": distDir + "/resource"
   }
 }
 

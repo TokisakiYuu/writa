@@ -4,7 +4,6 @@ import router from "./middleware/router";
 import logger from "./middleware/logger";
 import resource from "./middleware/static";
 import serverPush from "./middleware/serverPush";
-import Koa from "koa";
 
 (async () => {
     const {app, port, isHttp2} = await createServer(webConfig);
