@@ -6,6 +6,6 @@ export default function() {
         let startTime = Date.now();
         await next();
         let endTime = Date.now();
-        console.log(`[${method.toUpperCase()}] ${url}          ${endTime - startTime}ms`);
+        console.log(`[${method.toUpperCase()}] ${ctx.status} ${url} ${endTime - startTime}ms`);
     }
 }
