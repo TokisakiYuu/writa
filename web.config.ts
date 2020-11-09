@@ -12,7 +12,7 @@ try {
 
 const config: WebConfig = {
   domain: ["localhost", "127.0.0.1", "::1"],
-  httpsPort: 443,
+  httpsPort: 18236,
   httpPort: 80,
   ssl: {
     key: sslKey,

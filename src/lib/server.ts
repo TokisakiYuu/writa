@@ -37,7 +37,7 @@ export async function createServer(webConfig: WebConfig): Promise<ServerDetail> 
     const httpApp   = await createHTTPApp(httpPort);
     if(ssl && ssl.key && ssl.cert) {
         App = await createHTTP2ServerApp(httpsPort, ssl);
-        httpApp.use(ctx => ctx.redirect(`https://${ctx.host}${ctx.url}`));
+        httpApp.use(ctx => ctx.redirect(`https://${ctx.host}:${httpsPort}${ctx.url}`));
         detail.port = httpsPort;
         detail.isHttp2 = true;
     } else {
