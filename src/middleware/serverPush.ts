@@ -3,7 +3,6 @@ import http from "http";
 import http2, { ServerHttp2Stream } from "http2";
 import Koa from "koa";
 import mime from "mime";
-import { distDir } from "../../frontend/assets.config";
 
 const { HTTP2_HEADER_PATH } = http2.constants;
 
@@ -50,13 +49,23 @@ function getFileDescriptor(path: string): {fileDescriptor: number | null, header
   }
 }
 
-export default function() {
+export default function(options: ServerPushOptions) {
+  let { root } = options;
   return async (ctx:Koa.ParameterizedContext, next:Koa.Next) => {
     let nodeRes: http2.Http2ServerResponse | http.ServerResponse = ctx.res;
-    ctx.push = function(url: string, filePath: string) {
-      if(nodeRes instanceof http.ServerResponse) return;
-      return push(nodeRes.stream, url, filePath);
+    ctx.push = function(filePath: string) {
+      return {
+        to: function(url: string) {
+          if(nodeRes instanceof http.ServerResponse) return;
+          return push(nodeRes.stream, url, root + filePath)
+        }
+      }
     }
     return next();
   }
+}
+
+
+interface ServerPushOptions {
+  root: string
 }
