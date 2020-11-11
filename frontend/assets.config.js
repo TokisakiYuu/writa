@@ -4,7 +4,8 @@ module.exports = {
   
   template: {
     files: [
-      "/pages/index.pug"
+      "/pages/index.pug",
+      "/pages/article.pug"
     ],
     watch: "/pages"
   },
@@ -16,7 +17,8 @@ module.exports = {
   },
   css: {
     files: [
-      "/styles/shell.less"
+      "/styles/shell.less",
+      "/styles/article.less"
     ],
     watch: "/styles"
   },

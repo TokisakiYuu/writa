@@ -1,7 +1,7 @@
 {
-  "name": "yuu-typescript-web-starter",
+  "name": "yuu-log",
   "version": "1.0.0",
-  "description": "TypeScript web app boilerplate, no db, ready to work. (Http2, Node.js, TypeScript, Koa, VanillaJs, Pug, Less, Webpack)",
+  "description": "best blog system for myself",
   "keywords": [
     "typescript",
     "web",
@@ -20,7 +20,7 @@
     "dev": "ts-node --files --project tsconfig.json src/main.ts development",
     "build": "npm run clean && tsc --build tsconfig.json",
     "clean": "node scripts/clean",
-    "postinstall": "node scripts/postinstall.js && cd frontend && npm install",
+    "postinstall": "cd frontend && npm install",
     "commit": "cz"
   },
   "dependencies": {
@@ -47,15 +47,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/TokisakiYuu/Yuu-typescript-web-starter.git"
+    "url": "https://github.com/TokisakiYuu/Yuulog.git"
   },
   "bugs": {
-    "url": "https://github.com/TokisakiYuu/Yuu-typescript-web-starter/issues"
+    "url": "https://github.com/TokisakiYuu/Yuulog/issues"
   },
-  "homepage": "https://github.com/TokisakiYuu/Yuu-typescript-web-starter",
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  }
+  "homepage": "https://github.com/TokisakiYuu/Yuulog",
+  "config": {}
 }

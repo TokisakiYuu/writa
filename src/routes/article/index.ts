@@ -9,8 +9,7 @@ const router = new Router();
 
 router
     .get("/", async (ctx:Koa.ParameterizedContext, next:Koa.Next) => {
-        ctx.body = "The Article";
-        return next();
+        ctx.sendHTML("article");
     })
 
 export default router.routes();
