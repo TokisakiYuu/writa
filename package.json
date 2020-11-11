@@ -1,54 +1,57 @@
 {
-  "name": "yuulog",
+  "name": "yuu-log",
   "version": "1.0.0",
-  "description": "yuu blog service",
-  "main": "./dist/src/main.js",
-  "types": "./dist/types/src/main.d.ts",
+  "description": "best blog system for myself",
+  "keywords": [
+    "typescript",
+    "web",
+    "boilerplate",
+    "http2",
+    "koa",
+    "server push",
+    "pug",
+    "less",
+    "webpack"
+  ],
+  "author": "Tokisaki Yuu <tokisakiyuu@qq.com>",
+  "license": "MIT",
   "scripts": {
     "start": "npm run build && node index.js",
     "dev": "ts-node --files --project tsconfig.json src/main.ts development",
     "build": "npm run clean && tsc --build tsconfig.json",
-    "build:watch": "npm run clean && tsc --build tsconfig.json -w",
     "clean": "node scripts/clean",
-    "prepublishOnly": "npm run build",
-    "postpublish": "npm run clean",
-    "postinstall": "node scripts/postinstall.js"
+    "postinstall": "cd frontend && npm install",
+    "commit": "cz"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/TokisakiYuu/Yuulog.git"
-  },
-  "keywords": [
-    "blog"
-  ],
-  "author": "tokisakiyuu",
-  "license": "MIT",
-  "engines": {
-    "node": ">=10.0.0"
-  },
-  "bugs": {
-    "url": "https://github.com/TokisakiYuu/Yuulog/issues"
-  },
-  "homepage": "https://github.com/TokisakiYuu/Yuulog#readme",
   "dependencies": {
-    "@types/koa-mount": "^4.0.0",
-    "@types/koa-static": "^4.0.1",
     "koa": "^2.13.0",
     "koa-mount": "^4.0.0",
     "koa-router": "^9.4.0",
     "koa-static": "^5.0.0",
-    "mime": "^2.4.6",
-    "mkcert": "^1.4.0",
-    "selfsigned": "^1.10.8"
+    "mime": "^2.4.6"
   },
   "devDependencies": {
     "@types/koa": "^2.11.6",
+    "@types/koa-mount": "^4.0.0",
     "@types/koa-router": "^7.4.1",
-    "@types/mkcert": "^1.2.0",
+    "@types/koa-static": "^4.0.1",
     "@types/node": "^14.14.6",
-    "cross-env": "^7.0.2",
+    "commitizen": "^4.2.2",
     "rimraf": "^3.0.2",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.3"
-  }
+  },
+  "engines": {
+    "node": ">= 10.0.0",
+    "npm": ">= 5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TokisakiYuu/Yuulog.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TokisakiYuu/Yuulog/issues"
+  },
+  "homepage": "https://github.com/TokisakiYuu/Yuulog",
+  "config": {}
 }

@@ -1,14 +1,30 @@
-import koa from "koa";
+import Koa from "koa";
+import Router from "koa-router";
 import { resolve } from "path";
 import mount from "koa-mount";
 import serve from "koa-static";
-import { assetsConfig } from "../../frontend";
+import webConfig from "../../web.config";
+const { publicPathMap } = webConfig;
 
-const PUBLIC_ROOT = "/static"
-let staticPath = resolve(assetsConfig.distDir);
+const mounts: Koa.Middleware[] = [];
 
 export default function() {
-  const resourceApp = new koa();
-  resourceApp.use(serve(staticPath));
-  return mount(PUBLIC_ROOT, resourceApp);
+  for(let rootName in publicPathMap) {
+    let publicPath = publicPathMap[rootName];
+    const resourceApp = new Koa();
+    resourceApp.use(serve(resolve(publicPath)))
+    mounts.push(mount(rootName, resourceApp));
+  }
+
+  return async (ctx:Koa.ParameterizedContext, next:Koa.Next) => {
+    let curr: number = 0;
+    let middle = mounts[curr];
+    async function upstream(): Promise<void> {
+      middle = mounts[++curr];
+      if(typeof middle !== "function") return;
+      return await middle(ctx, upstream);
+    }
+    await middle(ctx, upstream);
+    return next();
+  }
 }

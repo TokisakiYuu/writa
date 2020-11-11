@@ -2,7 +2,7 @@
  * 在koa Context上挂载html渲染函数
  */
 import Koa from "koa";
-import { assetsConfig } from "../../frontend";
+import assetsConfig from "../../frontend/assets.config";
 
 const { distDir } = assetsConfig;
 const isDevelopmentMode = process.argv.includes("development");

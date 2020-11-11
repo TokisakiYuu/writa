@@ -6,9 +6,8 @@ const ext = require('replace-ext');
 const PluginError = require('plugin-error');
 const log = require('fancy-log');
 const babel = require("@babel/core");
-// depends: 
-// babel-preset-minify
-// @babel/plugin-transform-modules-umd
+const babelUmdModulesPlugin = require("@babel/plugin-transform-modules-umd");
+const babelMinifyPreset = require("babel-preset-minify");
 
 module.exports = function gulpPug(options) {
   const opts = Object.assign({}, options);
@@ -23,7 +22,7 @@ module.exports = function gulpPug(options) {
     file.path = ext(file.path, opts.client ? '.js' : '.html');
 
     if (file.isStream()) {
-      return cb(new PluginError('gulp-pug', 'Streaming not supported'));
+      return cb(new PluginError('gulp-pug-umd', 'Streaming not supported'));
     }
 
     if (file.isBuffer()) {
@@ -38,16 +37,16 @@ module.exports = function gulpPug(options) {
           compiled = babel.transformSync(`${compiled}\n\nexport default template;`, {
             moduleId: "pugTemplate",
             plugins: [
-              ["@babel/plugin-transform-modules-umd"]
+              babel.createConfigItem(babelUmdModulesPlugin)
             ],
-            presets: opts.minify? [["minify"]] : []
+            presets: opts.minify? [babel.createConfigItem(babelMinifyPreset)] : []
           }).code;
         } else {
           compiled = pug.compile(contents, opts)(data);
         }
         file.contents = Buffer.from(compiled);
       } catch (e) {
-        return cb(new PluginError('gulp-pug', e));
+        return cb(new PluginError('gulp-pug-umd', e));
       }
     }
     cb(null, file);
