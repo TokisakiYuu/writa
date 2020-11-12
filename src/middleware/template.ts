@@ -11,7 +11,7 @@ const isDevelopmentMode = process.argv.includes("development");
 export default function() {
   // 柯里化sendHTML函数以避免在下面的回调中定义局部函数
   function sendHTMLChunk(ctx:Koa.ParameterizedContext) {
-    return function sendHTML(templateName: string, data: any): void {
+    return function sendHTML(templateName: string, data: any | undefined): void {
       ctx.type = "html";
       let template: (local: any) => string;
       try {
@@ -54,6 +54,6 @@ declare module 'koa' {
      * @param name template name
      * @param data template data
      */
-    sendHTML(name: string, data: any): void
+    sendHTML(name: string, data: any | undefined): void
   }
 }
