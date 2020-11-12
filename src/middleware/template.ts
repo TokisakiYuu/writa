@@ -54,6 +54,6 @@ declare module 'koa' {
      * @param name template name
      * @param data template data
      */
-    sendHTML(name: string, data: any): void
+    sendHTML(name: string, data: any | undefined): void
   }
 }
