@@ -11,7 +11,7 @@ const isDevelopmentMode = process.argv.includes("development");
 export default function() {
   // 柯里化sendHTML函数以避免在下面的回调中定义局部函数
   function sendHTMLChunk(ctx:Koa.ParameterizedContext) {
-    return async function sendHTML(templateName: string, data: any): Promise<void> {
+    function sendHTML(templateName: string, data?: any): void {
       ctx.type = "html";
       let template: (local: any) => string;
       try {
@@ -23,9 +23,10 @@ export default function() {
       if(typeof template !== "function") {
         ctx.body = "非法HTML模板";
       } else {
-        ctx.body = template(data);
+        ctx.body = template(data || {});
       }
     }
+    return sendHTML;
   }
 
   // 真正的中间件
@@ -44,4 +45,20 @@ function importTemplate(
     delete require.cache[require.resolve(name)];
   }
   return require(name).default;
+}
+
+
+// 合并声明，获得代码提示
+declare module 'koa' {
+  interface BaseContext {
+    /**
+     * @param name template name
+     */
+    sendHTML(name: string): void
+    /**
+     * @param name template name
+     * @param data template data
+     */
+    sendHTML(name: string, data: any): void
+  }
 }

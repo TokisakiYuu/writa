@@ -23,7 +23,7 @@ function push(stream: ServerHttp2Stream, url: string, path: string) {
     pushStream.on("end", noop);
     pushStream.on("error", (err) => {
       pushStream.close();
-      return err; // 创建一个引用，假装我已经处理了这个错误 :)
+      return err; // 创建一个引用，假装我已经处理了这个错误
     });
   })
 }
@@ -68,4 +68,22 @@ export default function(options: ServerPushOptions) {
 
 interface ServerPushOptions {
   root: string
+}
+
+
+// 合并声明，获得代码提示
+declare module 'koa' {
+  interface BaseContext {
+    /**
+     * @param path file disk path
+     */
+    push(path: string): ToURL
+  }
+}
+
+interface ToURL {
+  /**
+   * @param url client request url
+   */
+  to(url: string): void
 }
