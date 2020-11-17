@@ -1,11 +1,14 @@
 doctype html
-html(lang="en")
+html(lang="zh-cn")
   head
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Article
+    script(src="/nmodules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js")
+    script(src="/nmodules/@webcomponents/webcomponentsjs/webcomponents-loader.js")
+    script(src="/static/js/article.js")
     link(rel="stylesheet", href="/static/css/article.css")
   body
     article
-      figure.header
+      article-header
 

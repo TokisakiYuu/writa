@@ -12,6 +12,7 @@ module.exports = {
   js: {
     files: [
       "/scripts/common.ts",
+      "/scripts/article.ts"
     ],
     watch: "/scripts"
   },
