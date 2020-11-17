@@ -29,6 +29,16 @@ module.exports = {
                     "src/**/*.{ts,tsx,js,jsx}"
                 ]
             }
+        },{
+            test: /\.pug$/,
+            loader: 'pug-loader'
+        },{
+            test: /\.less$/,
+            use: [
+                {loader: "styletext-loader", options: {esModule: false}},
+                "css-loader",
+                "less-loader"
+            ]
         }]
     },
 
