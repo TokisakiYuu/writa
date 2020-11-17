@@ -39,7 +39,7 @@ module.exports = function gulpPug(options) {
             plugins: [
               babel.createConfigItem(babelUmdModulesPlugin)
             ],
-            presets: opts.minify? [babel.createConfigItem(babelMinifyPreset)] : []
+            // presets: opts.minify? [babel.createConfigItem(babelMinifyPreset)] : []
           }).code;
         } else {
           compiled = pug.compile(contents, opts)(data);
