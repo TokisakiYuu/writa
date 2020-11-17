@@ -20,7 +20,8 @@ const config: WebConfig = {
   },
   publicPathMap: {
     "/static": distDir,
-    "/source": distDir + "/resource"
+    "/source": distDir + "/resource",
+    "/nmodules": __dirname + "/frontend/node_modules"
   }
 }
 
