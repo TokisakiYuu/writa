@@ -1,27 +1,27 @@
 :host {
   display: block;
-  height: 66vh;
-  background-color: gainsboro;
   * {
     margin: 0;
     padding: 0;
   }
 }
 
-.background {
-  max-width: 76.5em;
-  height: 100%;
-  margin: 0 auto;
-}
-.wrap {
-  display: grid;
-  height: 100%;
-  grid-template-columns: 5fr 2fr;
-  grid-template-rows: 1fr;
-  .place.left {
-    background-color: rgb(255, 159, 159);
-  }
-  .place.right {
-    background-color: rgb(176, 176, 255);
+.container {
+  .wrap {
+    max-width: var(--main-content-witdh);
+    min-height: 50vh;
+    margin: 0 auto;
+    display: grid;
+    height: 100%;
+    grid-template-columns: 5fr 2fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: 
+            "left right";
+    .place.left {
+      background-color: rgb(255, 159, 159);
+    }
+    .place.right {
+      background-color: rgb(176, 176, 255);
+    }
   }
 }
