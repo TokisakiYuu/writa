@@ -3,7 +3,7 @@ const htmlPaser = document.createElement("div");
 /**
  * @param html html code
  */
-export function createDocumentFragment(html: string): DocumentFragment {
+export function buildDocumentFragment(html: string): DocumentFragment {
   const frag = document.createDocumentFragment();
   htmlPaser.innerHTML = html;
   while(htmlPaser.firstElementChild) {
