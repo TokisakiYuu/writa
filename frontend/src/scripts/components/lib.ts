@@ -1,22 +1,21 @@
-const htmlPaser = document.createElement("div");
-
 /**
+ * @param target shaodowRoot
  * @param html html code
  */
-export function buildDocumentFragment(html: string): DocumentFragment {
-  const frag = document.createDocumentFragment();
+export function mountTemplate(target: Node, html: string): void {
+  const htmlPaser = document.createElement("div");
   htmlPaser.innerHTML = html;
-  while(htmlPaser.firstElementChild) {
-    frag.appendChild(htmlPaser.firstElementChild);
+  while(htmlPaser.firstChild) {
+    target.appendChild(htmlPaser.firstChild);
   }
-  return frag;
 }
 
 /**
+ * @param target shaodowRoot
  * @param cssObject styletext-loader exports object !!only!!
  */
-export function buildStyle(cssObject: any): HTMLStyleElement {
+export function mountStyle(target: Node, cssObject: any): void {
   const style = document.createElement("style");
   style.textContent = cssObject.cssText;
-  return style;
+  target.appendChild(style);
 }

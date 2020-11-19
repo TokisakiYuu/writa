@@ -1,4 +1,4 @@
-import { buildDocumentFragment, buildStyle } from "../lib";
+import { mountTemplate, mountStyle } from "../lib";
 const template = require("./template.pug");
 const style = require('./style.less');
 
@@ -7,9 +7,8 @@ class ArticleHeader extends HTMLElement {
   constructor() {
     super(); 
     const shadowRoot = this.attachShadow({mode: "open"});
-    shadowRoot.appendChild(buildDocumentFragment(template()));
-    shadowRoot.appendChild(buildStyle(style));
-    
+    mountTemplate(shadowRoot, template());
+    mountStyle(shadowRoot, style);
   }
 
   static get observedAttributes() {

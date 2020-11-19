@@ -3,25 +3,63 @@
   * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
   }
 }
 
-.container {
-  .wrap {
-    max-width: var(--main-content-witdh);
-    min-height: 50vh;
+.panel {
+  .center-wrap {
     margin: 0 auto;
-    display: grid;
-    height: 100%;
-    grid-template-columns: 5fr 2fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: 
-            "left right";
-    .place.left {
-      background-color: rgb(255, 159, 159);
+  }
+}
+
+.main-block {
+  max-width: var(--main-content-witdh);
+}
+
+.container {
+  .content-panel {
+    background-color: rgb(57, 57, 57);
+    color: white;
+  }
+}
+
+#meta {
+  max-width: var(--main-content-witdh);
+  min-height: 25vh;
+}
+
+.default-content {
+  padding: 0 var(--main-content-gap-side);
+  h2 {
+    color: white;
+    padding: 30px 0;
+  }
+  p {
+    color: rgb(206 206 206);
+    padding-bottom: 30px;
+  }
+}
+
+.default-meta {
+  padding: 10px var(--main-content-gap-side);
+  .blackboard {
+    padding: 20px;
+    background-color: rgb(43, 43, 43);
+    border-radius: 6px;
+    font-weight: bold;
+    .item {
+      margin: 0 0 16px 0;
+      .item-name {
+        color: rgb(145 145 145);
+        margin-bottom: .3em;
+      }
+      .item-value {
+        color: white;
+      }
     }
-    .place.right {
-      background-color: rgb(176, 176, 255);
+    .item:last-child {
+      margin-bottom: 0;
     }
   }
 }
