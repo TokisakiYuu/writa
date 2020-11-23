@@ -11,7 +11,7 @@ try {
 }
 
 const config: WebConfig = {
-  domain: ["localhost", "127.0.0.1", "::1"],
+  domain: ["localhost", "127.0.0.1", "::1", "www.tokisakiyuu.com", "tokisakiyuu.com"],
   httpsPort: 18236,
   httpPort: 80,
   ssl: {
