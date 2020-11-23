@@ -53,9 +53,10 @@ md.renderer.rules.image = function(tokens: any[], idx: number) {
   return `<image-view src="${src}" description="${description}"></image-view>`
 };
 
-// md.renderer.rules.heading_open = function(tokens: any[], idx: number) {
-//   let token = tokens[idx];
-//   console.log(token);
-//   return "<h1>哈哈哈哈哈</h1>"
-// }
+md.renderer.rules.heading_open = function(tokens: any[], idx: number) {
+  let tag = tokens[idx].tag;
+  let token = tokens[idx + 1];
+  let textToken = token.children[0];
+  return `<${tag} style="color:red">${textToken.content}</${tag}>`;
+}
 
