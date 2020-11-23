@@ -16,7 +16,7 @@ class ImageView extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ['src', 'width', 'height', 'title'];
+    return ['src', 'width', 'height', 'description'];
   }
 
   attributeChangedCallback(attrName: string, oldValue: string, newValue: string): void {
@@ -26,8 +26,8 @@ class ImageView extends HTMLElement {
       this.width = newValue;
     } else if(attrName === "height") {
       this.height = newValue;
-    } else if(attrName === "title") {
-      this.title = newValue;
+    } else if(attrName === "description") {
+      this.description = newValue;
     }
   }
 
@@ -54,12 +54,12 @@ class ImageView extends HTMLElement {
     _img.setAttribute("height", value);
   }
 
-  set title(value: string) {
+  set description(value: string) {
     const { shadowRoot } = this;
     if(!shadowRoot) return;
-    const title = shadowRoot.querySelector(".title");
-    if(!title) return;
-    title.innerHTML = value;
+    const description = shadowRoot.querySelector(".description");
+    if(!description) return;
+    description.innerHTML = value;
   }
 
   _setLoadding(isLoadding: boolean) {

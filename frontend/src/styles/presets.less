@@ -3,23 +3,19 @@
   --main-content-witdh: 750px;
   // 移动端时，主要内容和浏览器边框的间距
   --main-content-gap-side: 40px;
-  // 页面文字尺寸
-  --page-font-size: 16px;
 }
 
-@media (min-width: 1000px) {
-  :root {
-    --page-font-size: 20px;
-  }
-}
-
-
-// init
-:root {
-  font-size: var(--page-font-size);
+body {
+  font-size: 16px;
   font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: rgb(0, 0, 0);
   color: rgb(48 48 48);
+}
+
+@media (min-width: 1000px) {
+  body {
+    font-size: 20px;
+  }
 }
