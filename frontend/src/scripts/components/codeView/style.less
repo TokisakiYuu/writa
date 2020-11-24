@@ -1,0 +1,38 @@
+:host {
+  display: block;
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+}
+
+.container {
+  overflow: scroll;
+}
+.container::-webkit-scrollbar {
+  width: 0;
+}
+
+.panel {
+  background-color: rgb(30, 30, 30);
+  .main-block {
+    margin: 0 auto;
+    max-width: var(--main-content-witdh);
+    padding: 34px calc(var(--main-content-gap-side) + 20px);
+    font-size: .9em;
+  }
+}
+
+code {
+  font-family: Consolas, "Courier New", monospace;
+  color: white;
+}
+
+slot::slotted(* .hljs-title) {
+  color: #569cd6;
+}
+
+slot::slotted(.hljs-title) {
+  color: #dcdcaa;
+}

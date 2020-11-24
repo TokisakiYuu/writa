@@ -1,4 +1,5 @@
 @import "./presets.less";
+@import "/nmodules/highlight.js/styles/railscasts.css";
 
 * {
   margin: 0;
@@ -6,10 +7,9 @@
   box-sizing: border-box;
 }
 
-rich-text {
-  p {
-    margin-bottom: 12px;
-  }
+::selection {
+  background-color: rgba(79, 176, 255, 0.658);
+  color: white;
 }
 
 article-footer {
@@ -24,7 +24,7 @@ article-footer {
     margin-bottom: 12px;
   }
 
-  .author {
+  // .author {
 
-  }
+  // }
 }

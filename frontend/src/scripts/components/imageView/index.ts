@@ -79,10 +79,18 @@ class ImageView extends HTMLElement {
 
   _loadImage(src: string) {
     const { _img } = this;
+    const self = this;
     if(!_img) return;
     this._setLoadding(true);
-    _img.onload = () => this._setLoadding(false);
-    _img.src = src;
+    return fetch(src)
+      .then(response => {
+        return response.blob();
+      })
+      .then(imageBlob => {
+        let url = URL.createObjectURL(imageBlob);
+        _img.src = url;
+        self._setLoadding(false);
+      })
   }
 }
 

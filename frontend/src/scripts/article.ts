@@ -1,5 +1,10 @@
+// shell
 import './components/articleHeader';
 import "./components/articleBody";
 import "./components/articleFooter";
-import "./components/richText";
-import "./components/imageView"
+
+// view
+import "./components/imageView";
+import "./components/codeView";
+import "./components/paragraphView";
+import "./components/blockquoteView";

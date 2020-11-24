@@ -1,9 +1,8 @@
-import { mountTemplate, mountStyle } from "../lib";
+import { mountStyle, mountTemplate } from "../lib";
 const template = require("./template.pug");
 const style = require('./style.less');
 
-// 富文本标签
-class RichText extends HTMLElement {
+class BlockquoteView extends HTMLElement {
   constructor() {
     super(); 
     const shadowRoot = this.attachShadow({mode: "open"});
@@ -12,5 +11,4 @@ class RichText extends HTMLElement {
   }
 }
 
-customElements.define('rich-text', RichText);
-
+customElements.define('blockquote-view', BlockquoteView);

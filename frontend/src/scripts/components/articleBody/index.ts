@@ -2,8 +2,6 @@ import { mountStyle, mountTemplate } from "../lib";
 const template = require("./template.pug");
 const style = require('./style.less');
 
-import "../richText";
-
 class ArticleBody extends HTMLElement {
   constructor() {
     super(); 
