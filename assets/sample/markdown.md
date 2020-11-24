@@ -16,8 +16,19 @@
 
 ```javascript
 function say() {
-	console.log("hello");
+  console.log("hello");console.log("hello world");console.log("hello world");console.log("hello world");console.log("hello world");
 }
+
+say();
+// => "hello";
+
+// => "hello world";
+
+// => "hello world";
+
+// => "hello world";
+
+// => "hello world";
 ```
 
 符号

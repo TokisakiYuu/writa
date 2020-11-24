@@ -2,6 +2,7 @@ import { URL } from "url";
 import Token from "markdown-it/lib/token";
 import { RenderRule } from "markdown-it/lib/renderer";
 import hljs from 'highlight.js';
+import { escape } from 'html-escaper';
 
 interface YuulogMarkdownRules {
   [type: string]: RenderRule
@@ -49,7 +50,7 @@ rules.fence = function(tokens: Token[], idx: number) {
   const blockToken = tokens[idx];
   const lang = blockToken.info;
   const code = blockToken.content;
-  return `<paragraph-view><code-view slot="passline">${hljs.highlight(lang, code, true).value}</code-view></paragraph-view>`;
+  return `<paragraph-view><code-view slot="passline" lang="${lang}" code="${escape(hljs.highlight(lang, code, true).value)}"></code-view></paragraph-view>`;
 }
 
 // 引用
@@ -61,7 +62,14 @@ rules.blockquote_close = function(tokens: Token[], idx: number) {
 }
 
 // 分割线
-rules.hr = function() {
+rules.hr = function(tokens: Token[]) {
+  // debug
+  // for(let index in tokens) {
+  //   let token = tokens[index];
+  //   if(token.content === '符号') {
+  //     console.log(tokens[parseInt(index) + 3]);
+  //   }
+  // }
   return `<paragraph-view><hr></paragraph-view>`
 }
 
@@ -117,6 +125,12 @@ rules.paragraph_close = function(tokens: Token[], idx: number) {
     return "</p>"
   }
   return `</paragraph-view>`;
+}
+
+rules.code_inline = function(tokens: Token[], idx: number) {
+  const token = tokens[idx];
+  const code = token.content;
+  return `<code>${code}</code>`;
 }
 
 export default rules;
