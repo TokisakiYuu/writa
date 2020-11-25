@@ -16,11 +16,15 @@
     ::selection {
       background-color: rgba(109, 160, 255, 0.363);
     }
+    ::-webkit-scrollbar {
+      height: 8px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: rgba(119, 119, 119, .5);
+      border-radius: 6px;
+    }
     pre {
-      overflow: scroll;
-      ::-webkit-scrollbar {
-        width: 0;
-      }
+      overflow-x: scroll;
       box-sizing: border-box;
       padding: 34px calc(var(--main-content-gap-side) + 20px);
     }
@@ -28,21 +32,21 @@
 }
 
 code {
-  font-family: Consolas, "Courier New", monospace;
+  font-family: Menlo,Monaco,Consolas,Andale Mono,lucida console,Courier New,monospace;
   color: white;
 }
 
 
 // 分语言设置高亮css
-// :host([lang='javascript']) {
+// :host([lang='javascript']) code {
   
 // }
 
-// :host([lang='java']) {
+// :host([lang='java']) code {
   
 // }
 
-// :host([lang='rust']) {
+// :host([lang='rust']) code {
   
 // }
 
@@ -50,94 +54,83 @@ code {
 // common highlight styles
 :host {
   code {
-    // from highlight.js styles railscasts.css
+    // from highlight.js styles vs2015.css
     .hljs {
       display: block;
       overflow-x: auto;
       padding: 0.5em;
-      background: #232323;
-      color: #e6e1dc;
+      background: #1E1E1E;
+      color: #DCDCDC;
+    }
+    
+    .hljs-keyword,
+    .hljs-literal,
+    .hljs-symbol,
+    .hljs-name {
+      color: #569CD6;
+    }
+    .hljs-link {
+      color: #569CD6;
+      text-decoration: underline;
+    }
+    
+    .hljs-built_in,
+    .hljs-type {
+      color: #4EC9B0;
+    }
+    
+    .hljs-number,
+    .hljs-class {
+      color: #B8D7A3;
+    }
+    
+    .hljs-string,
+    .hljs-meta-string {
+      color: #D69D85;
+    }
+    
+    .hljs-regexp,
+    .hljs-template-tag {
+      color: #9A5334;
+    }
+    
+    .hljs-subst,
+    .hljs-function,
+    .hljs-title,
+    .hljs-params,
+    .hljs-formula {
+      color: #DCDCDC;
     }
     
     .hljs-comment,
     .hljs-quote {
-      color: #bc9458;
+      color: #57A64A;
       font-style: italic;
     }
     
-    .hljs-keyword,
-    .hljs-selector-tag {
-      color: #c26230;
+    .hljs-doctag {
+      color: #608B4E;
     }
     
-    .hljs-string,
-    .hljs-number,
-    .hljs-regexp,
+    .hljs-meta,
+    .hljs-meta-keyword,
+    .hljs-tag {
+      color: #9B9B9B;
+    }
+    
     .hljs-variable,
     .hljs-template-variable {
-      color: #a5c261;
+      color: #BD63C5;
     }
     
-    .hljs-subst {
-      color: #519f50;
-    }
-    
-    .hljs-tag,
-    .hljs-name {
-      color: #e8bf6a;
-    }
-    
-    .hljs-type {
-      color: #da4939;
-    }
-    
-    
-    .hljs-symbol,
-    .hljs-bullet,
-    .hljs-built_in,
-    .hljs-builtin-name,
     .hljs-attr,
-    .hljs-link {
-      color: #6d9cbe;
+    .hljs-attribute,
+    .hljs-builtin-name {
+      color: #9CDCFE;
     }
     
-    .hljs-params {
-      color: #d0d0ff;
-    }
-    
-    .hljs-attribute {
-      color: #cda869;
-    }
-    
-    .hljs-meta {
-      color: #9b859d;
-    }
-    
-    .hljs-title,
     .hljs-section {
-      color: #ffc66d;
-    }
-    
-    .hljs-addition {
-      background-color: #144212;
-      color: #e6e1dc;
-      display: inline-block;
-      width: 100%;
-    }
-    
-    .hljs-deletion {
-      background-color: #600;
-      color: #e6e1dc;
-      display: inline-block;
-      width: 100%;
-    }
-    
-    .hljs-selector-class {
-      color: #9b703f;
-    }
-    
-    .hljs-selector-id {
-      color: #8b98ab;
+      color: gold;
     }
     
     .hljs-emphasis {
@@ -148,8 +141,29 @@ code {
       font-weight: bold;
     }
     
-    .hljs-link {
-      text-decoration: underline;
-    }  
+    /*.hljs-code {
+      font-family:'Monospace';
+    }*/
+    
+    .hljs-bullet,
+    .hljs-selector-tag,
+    .hljs-selector-id,
+    .hljs-selector-class,
+    .hljs-selector-attr,
+    .hljs-selector-pseudo {
+      color: #D7BA7D;
+    }
+    
+    .hljs-addition {
+      background-color: #144212;
+      display: inline-block;
+      width: 100%;
+    }
+    
+    .hljs-deletion {
+      background-color: #600;
+      display: inline-block;
+      width: 100%;
+    }
   }
 }

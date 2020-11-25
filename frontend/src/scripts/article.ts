@@ -8,3 +8,4 @@ import "./components/imageView";
 import "./components/codeView";
 import "./components/paragraphView";
 import "./components/blockquoteView";
+import "./components/linkView";

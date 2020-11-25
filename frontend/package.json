@@ -11,6 +11,7 @@
     "test": "node scripts/test"
   },
   "devDependencies": {
+    "@types/body-scroll-lock": "^2.6.1",
     "awesome-typescript-loader": "^5.2.1",
     "core-js": "^3.7.0",
     "css-loader": "^5.0.1",
@@ -32,6 +33,7 @@
   },
   "dependencies": {
     "@webcomponents/webcomponentsjs": "^2.5.0",
+    "body-scroll-lock": "^3.1.5",
     "highlight.js": "^10.4.0"
   },
   "author": "Tokisaki Yuu <tokisakiyuu@qq.com>",

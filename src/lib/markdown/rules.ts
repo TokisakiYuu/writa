@@ -1,4 +1,3 @@
-import { URL } from "url";
 import Token from "markdown-it/lib/token";
 import { RenderRule } from "markdown-it/lib/renderer";
 import hljs from 'highlight.js';
@@ -11,20 +10,13 @@ interface YuulogMarkdownRules {
 const rules: YuulogMarkdownRules = {};
 
 // 链接
-const tempHostname = "tmp.com";
 rules.link_open = function(tokens: Token[], idx: number) {
   const linkToken = tokens[idx];
   let href = linkToken.attrGet("href");
-  let title = linkToken.attrGet("title");
-  let { hostname } = new URL(href || "", `http://${tempHostname}`);
-  if(hostname && hostname !== tempHostname) {
-    tokens[idx].attrPush([ 'target', '_blank' ]);
-    return `<a href="${href || "javascript:0;"}" ${title? `title="${title}"` : ""} target="_blank">`;
-  }
-  return `<a href="${href || "javascript:0;"}" ${title? `title="${title}"` : ""}>`;
+  return `<link-view href="${href}">`
 }
 rules.link_close = function() {
-  return "</a>";
+  return "</link-view>"
 }
 
 // 图片

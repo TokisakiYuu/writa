@@ -13,8 +13,15 @@
 
 slot::slotted(code) {
   background-color: rgb(34, 34, 34);
-  color: rgb(255, 255, 255);
-  font-size: .9em;
+  font-family: Menlo,Monaco,Consolas,Andale Mono,lucida console,Courier New,monospace;
+  color: rgb(255 255 255);
+  font-size: .8em;
   padding: 2px 8px !important;
   border-radius: 5px;
+}
+
+slot::slotted(hr) {
+  border-style: dotted;
+  border-color: rgb(204 204 204);
+  margin: 60px 0 !important;
 }
