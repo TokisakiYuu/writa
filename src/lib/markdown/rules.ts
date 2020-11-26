@@ -42,7 +42,7 @@ rules.fence = function(tokens: Token[], idx: number) {
   const blockToken = tokens[idx];
   const lang = blockToken.info;
   const code = blockToken.content;
-  return `<paragraph-view><code-view slot="passline" lang="${lang}" code="${escape(hljs.highlight(lang, code, true).value)}"></code-view></paragraph-view>`;
+  return `<paragraph-view><code-view slot="passline" lang="${lang}">${hljs.highlight(lang, code, true).value}</code-view></paragraph-view>`;
 }
 
 // 引用
@@ -97,10 +97,10 @@ rules.ordered_list_close = function(tokens: Token[], idx: number) {
 
 // 表格
 rules.table_open = function(tokens: Token[], idx: number) {
-  return `<paragraph-view><table>`;
+  return `<paragraph-view><table-view slot="passline"><table>`;
 }
 rules.table_close = function(tokens: Token[], idx: number) {
-  return `</table></paragraph-view>`;
+  return `</table></table-view></paragraph-view>`;
 }
 
 // 普通文本
