@@ -10,7 +10,7 @@
 .panel {
   .main-block {
     margin: 0 auto;
-    max-width: var(--main-content-witdh);
+    max-width: var(--main-content-width);
     padding: 12px var(--main-content-gap-side);
   }
 }
@@ -31,15 +31,21 @@
   display: flex;
   align-items:center;
   justify-content:center;
+  img {
+    max-width: 100%;
+    border: 6px solid white;
+    border-radius: 3px;
+    box-shadow: 2px 3px 6px 0px #b3b3b380;
+  }
 }
 
 
 .placeholder {
-  --placeholder-width: 300px;
-  --placeholder-height: 185.4px;
+  --placeholder-width: 50px;
+  --placeholder-height: 50px;
   .image-placeholder {
-    width: var(--placeholder-width);
-    height: var(--placeholder-height);
-    background-color: gainsboro;
+    // width: var(--placeholder-width);
+    // height: var(--placeholder-height);
+    // background-color: gainsboro;
   }
 }

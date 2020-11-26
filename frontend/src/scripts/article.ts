@@ -9,3 +9,4 @@ import "./components/codeView";
 import "./components/paragraphView";
 import "./components/blockquoteView";
 import "./components/linkView";
+import "./components/tableView";

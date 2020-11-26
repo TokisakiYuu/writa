@@ -1,0 +1,31 @@
+table-view {
+  table {
+    border-collapse: collapse;
+    border-right: 3px solid var(--highlight-text-color, rgb(106, 204, 20));
+    th, td {
+      font-size: .9em;
+      border: 1px solid rgb(193 193 193);
+      padding: .6em .8em;
+      color: rgb(223 223 223);
+    }
+    thead {
+      tr {
+        background-color: rgb(0 59 9);
+        font-weight: bold;
+        text-align: center !important;
+        white-space:nowrap !important;
+      }
+    }
+    tbody {
+      tr {
+        td:first-child {
+          background-color: rgb(0 106 23);
+          font-weight: bold;
+        }
+        td:not(:first-child) {
+          color: rgb(102 102 102);
+        }
+      }
+    }
+  }
+}

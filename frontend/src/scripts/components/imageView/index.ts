@@ -48,10 +48,22 @@ class ImageView extends HTMLElement {
     _img.setAttribute("width", value);
   }
 
+  get width() {
+    const { _img } = this;
+    if(!_img) return "";
+    return _img.getAttribute("width") || "";
+  }
+
   set height(value: string) {
     const { _img } = this;
     if(!_img) return;
     _img.setAttribute("height", value);
+  }
+
+  get height() {
+    const { _img } = this;
+    if(!_img) return "";
+    return _img.getAttribute("height") || "";
   }
 
   set description(value: string) {
@@ -60,6 +72,14 @@ class ImageView extends HTMLElement {
     const description = shadowRoot.querySelector(".description");
     if(!description) return;
     description.innerHTML = value;
+  }
+
+  get description() {
+    const { shadowRoot } = this;
+    if(!shadowRoot) return "";
+    const description = shadowRoot.querySelector(".description");
+    if(!description) return "";
+    return description.innerHTML;
   }
 
   _setLoadding(isLoadding: boolean) {

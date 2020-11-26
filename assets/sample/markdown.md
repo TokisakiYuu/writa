@@ -41,7 +41,7 @@ say();
 
 图片
 
-![随机图片](https://picsum.photos/300/185 "由picsum.photos提供")
+![随机图片](https://picsum.photos/300/200 "由picsum.photos提供")
 
 转义符号
 
@@ -80,10 +80,11 @@ say();
 
 表格
 
-| 名称 | 价格 |
-|:---:|:----:|
-| A   | 23   |
-| B   | 45   |
+| 名称 | 价格 | 销量 | 销量 | 销量 | title |
+|-----|------|------|-----|------|-------|
+| A   | 23   |80sfsda  |456  |faisd |idjaius|
+| B   | 45   |200   |98f sd |jhiux |uihciua|
+| C   | 12   |400 dauhiwufhiauwidw  |9fu0 |98es dawuijfiuajwiuf |coijoiadas|
 
 
 
