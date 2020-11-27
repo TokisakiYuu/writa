@@ -1,3 +1,14 @@
+@tablet:   ~"(min-width: 500px)";
+@desktop:  ~"(min-width: 1000px)";
+
+.clearFloat() {
+  &::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+
 :host {
   display: block;
   * {
@@ -7,59 +18,59 @@
   }
 }
 
-.panel {
-  .center-wrap {
-    margin: 0 auto;
-  }
-}
-
-.main-block {
-  max-width: var(--main-content-width);
-}
-
+// TODO: 解决盒子堆叠
 .container {
-  .content-panel {
-    background-color: rgb(57, 57, 57);
+  background-color: rgb(49, 49, 49);
+  .background, 
+  .content {
+    width: 100%;
+    height: 100%;
+  }
+  .content {
+    float: left;
+  }
+  .clearFloat();
+  // 这个盒子预留下来做动态背景，或者其它什么背景
+  .background {
+    // 屏蔽所有鼠标事件
+    pointer-events: none;
+  }
+}
+
+// 整体布局
+.content {
+  display: grid;
+  grid-template-areas: 
+    "summary"
+    "mete";
+  grid-template-rows: auto min-content;
+  grid-template-columns: 100%;
+  margin: 0 auto;
+  @media (min-width: 600px) {
+    grid-template-areas: 
+      "summary mete";
+    grid-template-rows: 100%;
+    grid-template-columns: auto min-content;
+    max-width: 1000px;
+  }
+  padding: 18px var(--main-content-gap-side);
+}
+
+// 摘要内容，包含标题和简介
+.summary {
+  .summary-block {
+    background-color: rgb(0, 182, 0);
+    height: 100%;
+  }
+}
+
+// 延展信息（生成的数据，包括编辑日期、文章标签、预计阅读时间）
+.mete {
+  .mete-block {
     color: white;
-  }
-}
-
-#meta {
-  max-width: var(--main-content-width);
-  min-height: 25vh;
-}
-
-.default-content {
-  padding: 0 var(--main-content-gap-side);
-  h2 {
-    color: white;
-    padding: 30px 0;
-  }
-  p {
-    color: rgb(206 206 206);
-    padding-bottom: 30px;
-  }
-}
-
-.default-meta {
-  padding: 10px var(--main-content-gap-side);
-  .blackboard {
-    padding: 20px;
-    background-color: rgb(43, 43, 43);
+    background-color: rgb(71, 71, 71);
     border-radius: 6px;
-    font-weight: bold;
-    .item {
-      margin: 0 0 16px 0;
-      .item-name {
-        color: rgb(145 145 145);
-        margin-bottom: .3em;
-      }
-      .item-value {
-        color: white;
-      }
-    }
-    .item:last-child {
-      margin-bottom: 0;
-    }
+    height: 100%;
+    padding: 1em;
   }
 }

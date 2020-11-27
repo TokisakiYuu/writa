@@ -1,12 +1,16 @@
+// Mobile first
+@tablet:   ~"(min-width: 500px)";
+@desktop:  ~"(min-width: 1000px)";
+
 :root {
-  // 页面的主要内容最大宽度
   --main-content-width: 750px;
-  // 移动端时，主要内容和浏览器边框的间距
   --main-content-gap-side: 40px;
-  // 普通文本颜色
   --normal-text-color: rgb(48 48 48);
-  // 突出文本颜色
   --highlight-text-color: rgb(106, 204, 20);
+  --desktop-min-width: 100px;
+  @media @desktop {
+    --main-content-gap-side: 0px;
+  }
 }
 
 body {
@@ -16,13 +20,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: rgb(0, 0, 0);
   color: var(--normal-text-color);
-}
-
-@media (min-width: 1000px) {
-  :root {
-    --main-content-gap-side: 0px;
-  }
-  body {
+  @media @desktop {
     font-size: 20px;
   }
 }

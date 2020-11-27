@@ -83,16 +83,21 @@ class ImageView extends HTMLElement {
   }
 
   _setLoadding(isLoadding: boolean) {
-    const { shadowRoot } = this;
+    const { shadowRoot, _img } = this;
     if(!shadowRoot) return;
-    const image = shadowRoot.querySelector(".image");
+    const image: HTMLElement | null = shadowRoot.querySelector(".image");
     const placeholder = shadowRoot.querySelector(".placeholder");
+    if(!image || !placeholder || !_img) return;
     if(!isLoadding) {
-      image?.classList.remove("hidden");
-      placeholder?.classList.add("hidden");
+      image.classList.remove("hidden");
+      placeholder.classList.add("hidden");
+      image.style.height = _img.offsetHeight + "px";
+      image.style.opacity = "1";
     } else {
-      image?.classList.add("hidden");
-      placeholder?.classList.remove("hidden");
+      image.classList.add("hidden");
+      placeholder.classList.remove("hidden");
+      image.style.height = "0";
+      image.style.opacity = "0";
     }
     this.loadding = isLoadding;
   }
@@ -109,6 +114,12 @@ class ImageView extends HTMLElement {
       .then(imageBlob => {
         let url = URL.createObjectURL(imageBlob);
         _img.src = url;
+        return new Promise((resolve, reject) => {
+          _img.onload = resolve;
+          _img.onerror = reject;
+        });
+      })
+      .then(() => {
         self._setLoadding(false);
       })
   }
