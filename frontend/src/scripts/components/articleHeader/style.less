@@ -18,42 +18,54 @@
   }
 }
 
-// TODO: 解决盒子堆叠
 .container {
+  position: relative;
   background-color: rgb(49, 49, 49);
-  .background, 
-  .content {
-    width: 100%;
-    height: 100%;
-  }
-  .content {
-    float: left;
-  }
-  .clearFloat();
   // 这个盒子预留下来做动态背景，或者其它什么背景
   .background {
     // 屏蔽所有鼠标事件
     pointer-events: none;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
   }
-}
-
-// 整体布局
-.content {
-  display: grid;
-  grid-template-areas: 
-    "summary"
-    "mete";
-  grid-template-rows: auto min-content;
-  grid-template-columns: 100%;
-  margin: 0 auto;
-  @media (min-width: 600px) {
-    grid-template-areas: 
-      "summary mete";
-    grid-template-rows: 100%;
-    grid-template-columns: auto min-content;
-    max-width: 1000px;
+  // 这个盒子预留的开屏动画
+  .launch-screen {
+    pointer-events: none;
+    // height: 100vh;
+    height: 0;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    background-color: yellow;
   }
-  padding: 18px var(--main-content-gap-side);
+  // 这个盒子是放内容的
+  .content {
+    .wrap {
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+      padding: 1.6rem var(--main-content-gap-side);
+      display: grid;
+      grid-template-areas: 
+        "summary"
+        "mete";
+      grid-template-rows: auto min-content;
+      grid-template-columns: 100%;
+      @media (min-width: 600px) {
+        grid-template-areas: 
+          "summary mete";
+        grid-template-rows: 100%;
+        grid-template-columns: auto min-content;
+        max-width: 1000px;
+      }
+    }
+  }
 }
 
 // 摘要内容，包含标题和简介
@@ -69,8 +81,25 @@
   .mete-block {
     color: white;
     background-color: rgb(71, 71, 71);
-    border-radius: 6px;
     height: 100%;
-    padding: 1em;
+    padding: 1.4em;
   }
+}
+
+.item {
+  white-space: nowrap;
+  .name {
+    color: #919191;
+    font-size: .8em;
+    margin-bottom: .2em;
+  }
+  .value {
+    font-size: .9em;
+    color: white;
+    font-weight: bold;
+  }
+}
+
+.item + .item {
+  margin-top: .6em;
 }
