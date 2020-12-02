@@ -1,11 +1,16 @@
 import fs from "fs";
-import { resolve } from "path";
 import MarkerdownIt from "markdown-it";
 import myRules from './rules';
 
-const md = new MarkerdownIt();
+const md = new MarkerdownIt({
+  html: true
+});
 Object.assign(md.renderer.rules, myRules);
 
-export function renderToHTML() {
-  return md.render(fs.readFileSync(resolve(__dirname, "../../../assets/sample/markdown.md")).toString())
+export function renderFile(filePath: string) {
+  return md.render(fs.readFileSync(filePath).toString());
+}
+
+export function render(code: string) {
+  return md.render(code);
 }

@@ -4,14 +4,17 @@
 
 import Koa from "koa";
 import Router from "koa-router";
-import { renderToHTML } from "../../lib/markdown";
+import * as markdown from "../../lib/markdown";
+import WebConfig from '../../../web.config';
+
+const uploadDir = WebConfig.upload?.dir;
 
 const router = new Router();
 
 router
     .get("/", async (ctx:Koa.ParameterizedContext, next:Koa.Next) => {
         ctx.sendHTML("article", {
-            content: renderToHTML()
+            content: markdown.renderFile(`${uploadDir}/markdown/markdown.md`)
         });
     })
 
