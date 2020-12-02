@@ -22,6 +22,9 @@ const config: WebConfig = {
     "/static": distDir,
     "/source": distDir + "/resource",
     "/nmodules": __dirname + "/frontend/node_modules"
+  },
+  upload: {
+    dir: __dirname + "/upload"
   }
 }
 
