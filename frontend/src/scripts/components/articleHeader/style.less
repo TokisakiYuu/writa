@@ -1,5 +1,4 @@
-@tablet:   ~"(min-width: 500px)";
-@desktop:  ~"(min-width: 1000px)";
+@tablet:   ~"(min-width: 600px)";
 
 .clearFloat() {
   &::after {
@@ -50,14 +49,14 @@
       margin: 0 auto;
       position: relative;
       z-index: 2;
-      padding: 1.6rem var(--main-content-gap-side);
+      padding: 3em var(--main-content-gap-side);
       display: grid;
       grid-template-areas: 
         "summary"
         "mete";
       grid-template-rows: auto min-content;
       grid-template-columns: 100%;
-      @media (min-width: 600px) {
+      @media @tablet {
         grid-template-areas: 
           "summary mete";
         grid-template-rows: 100%;
@@ -71,8 +70,26 @@
 // 摘要内容，包含标题和简介
 .summary {
   .summary-block {
-    background-color: rgb(0, 182, 0);
+    // background-color: rgb(0, 182, 0);
     height: 100%;
+    h1 {
+      font-size: 1.6em;
+      color: white;
+      margin-bottom: 1em;
+      @media @tablet {
+        font-size: 2.2em;
+      }
+    }
+    p {
+      color: rgb(206, 206, 206);
+      line-height: 1.4;
+    }
+  }
+  @gap: 24px;
+  margin-bottom: @gap;
+  @media @tablet {
+    margin-bottom: unset;
+    margin-right: @gap;
   }
 }
 
@@ -81,8 +98,8 @@
   .mete-block {
     color: white;
     background-color: rgb(71, 71, 71);
-    height: 100%;
     padding: 1.4em;
+    border-radius: 10px;
   }
 }
 

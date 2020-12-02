@@ -2,10 +2,13 @@ import { mountTemplate, mountStyle } from "../lib";
 const template = require("./template.pug");
 const style = require('./style.less');
 
+const initLoad = Symbol("INIT_LOAD_IMAGE");
+
 // 图片视图
 class ImageView extends HTMLElement {
   loadding: boolean = true;
   _img: HTMLImageElement | null;
+  [initLoad]: boolean = true;
 
   constructor() {
     super(); 
@@ -32,7 +35,13 @@ class ImageView extends HTMLElement {
   }
 
   set src(value: string) {
-    this._loadImage(value);
+    let isFirstLoad = this[initLoad];
+    if(isFirstLoad) {
+      this.loadImage(value);
+      this[initLoad] = false;
+    } else {
+      this.loadImage(value);
+    }
   }
 
   get src() {
@@ -102,7 +111,7 @@ class ImageView extends HTMLElement {
     this.loadding = isLoadding;
   }
 
-  _loadImage(src: string) {
+  loadImage(src: string) {
     const { _img } = this;
     const self = this;
     if(!_img) return;

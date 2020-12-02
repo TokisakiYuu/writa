@@ -5,19 +5,21 @@
         .wrap
             .summary
                 .summary-block
-                    | asdafwafawf
-                    | aiwjhiufjiuwiu
-                    br
-                    | daiwjdoiwad
+                    h1
+                        slot(name="title")
+                    p
+                        slot(name="overview")
             .mete
                 .mete-block
                     .item
                         .name 最后编辑时间:
-                        .value 2020/11/27 17:28
+                        .value
+                            slot(name="last_modified") &nbsp;
                     .item
                         .name 阅读时间:
-                        .value 8分钟
+                        .value
+                            slot(name="read_time") &nbsp;
                     .item
                         .name 标签:
-                        .value #花菜, #蔬菜
-            
+                        .value
+                            slot(name="tags") &nbsp;
