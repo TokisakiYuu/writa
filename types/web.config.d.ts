@@ -5,10 +5,15 @@ interface WebConfig {
   ssl?: SSLOptions,
   publicPathMap?: {
     [rootName: string]: string
-  }
+  },
+  upload?: UploadOption
 }
 
 interface SSLOptions {
   key: string | undefined,
   cert: string | undefined
+}
+
+interface UploadOption {
+  dir: string
 }
