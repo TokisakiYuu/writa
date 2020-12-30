@@ -104,20 +104,47 @@ file
 # TernJS port file
 .tern-port
 
-# 临时文件
-temp.js
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+*.swp
 
-# MacOS X 目录的自定义属性，例如文件们的图标位置或者是背景色的选择
+pids
+logs
+results
+tmp
+
+# Build
+public/css/main.css
+
+# Coverage reports
+coverage
+
+# API keys and secrets
+.env
+
+# Dependency directory
+node_modules
+bower_components
+
+# Editors
+.idea
+*.iml
+
+# OS metadata
 .DS_Store
+Thumbs.db
 
-# 用户上传资源的存放点
-upload
+# Ignore built ts files
+dist/**/*
 
-# Webpack打包分析
-compilation-stats.json
+# ignore yarn.lock
+yarn.lock
 
-#awesome-typescript-loader的缓存文件
-.awcache
-
-# secret file
+# secret
 *.pem
