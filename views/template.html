@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  dir="ltr"
+  itemscope
+  itemtype="https://schema.org/WebPage"
+  prefix="og:http://ogp.me/ns#"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>HTML Template</title>
+
+    <link rel="canonical" href="https://moderntemplate.site/" />
+    <link rel="amphtml" href="https://moderntemplate.site/amp/index.html" />
+    <link rel="icon" type="image/png" href="./img/icons/64x64.png" />
+    <link rel="manifest" href="./manifest.json" />
+
+    <!-- General -->
+    <meta name="application-name" content="HTML Template" />
+    <meta name="author" content="Tokisaki Yuu" />
+    <meta name="description" content="Modern pug Starter Template" />
+    <meta
+      name="keywords"
+      content="modern, useful, html, html5, css, css3, javascript, js, template, boilerplate, pug"
+    />
+    <meta name="referrer" content="strict-origin" />
+
+    <meta itemprop="name" content="HTML Template" />
+    <meta itemprop="description" content="Modern HTML Starter Template" />
+    <meta itemprop="image" content="./img/icons/128x128.png" />
+
+    <!-- Microsoft -->
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="msapplication-starturl" content="/" />
+    <meta name="msapplication-tooltip" content="Modern HTML Starter Template" />
+    <meta name="msapplication-TileColor" content="#333" />
+    <meta name="msapplication-config" content="browserconfig.xml" />
+
+    <!-- Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://moderntemplate.site/" />
+    <meta property="og:title" content="HTML Template" />
+    <meta property="og:description" content="Modern HTML Starter Template" />
+    <meta property="og:image" content="./img/icons/600x600.png" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="app" />
+    <meta name="twitter:title" content="HTML Template" />
+    <meta name="twitter:description" content="Modern HTML Starter Template" />
+    <meta name="twitter:url" content="https://moderntemplate.site/" />
+    <meta name="twitter:image" content="./img/icons/512x512.png" />
+
+    <!-- IOS -->
+    <meta name="apple-mobile-web-app-title" content="HTML Template" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#333" />
+    <link rel="apple-touch-icon" href="./img/icons/512x512.png" />
+
+    <!-- Android -->
+    <meta name="theme-color" content="#f0f0f0" />
+    <meta name="color-scheme" content="light" />
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=YOUR_ID"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+
+      gtag('config', 'YOUR_ID')
+    </script>
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "Webpage",
+        "url": "https://moderntemplate.site",
+        "name": "HTML Template",
+        "headline": "HTML Template",
+        "description": "Modern HTML Starter Template",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://moderntemplate.site"
+        },
+        "publisher": {
+          "@type": "Person",
+          "name": "Igor Agapov"
+        },
+        "image": {
+          "@type": "ImageObject",
+          "url": "./img/logo.png",
+          "width": 1200,
+          "height": 680
+        },
+        "datePublished": "2020-12-12",
+        "keywords": "modern, useful, html, html5, css, css3, javascript, js, template, boilerplate"
+      }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      as="style"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preload" href="./src/css/style.css" as="style" />
+    <link rel="stylesheet" href="./src/css/style.css" />
+
+    <link rel="preload" href="./src/js/script.js" as="script" />
+
+    <style>
+      /* Critical CSS */
+    </style>
+  </head>
+
+  <body>
+    <!-- HTML5 -->
+    <header>
+      <h1>
+        Modern HTML <br />
+        Starter Template
+      </h1>
+      <p>
+        This template is made to help you create modern, fast and completely
+        secure progressive web applications
+      </p>
+      <nav>
+        <a
+          href="https://github.com/harryheman/Modern-HTML-Starter-Template"
+          target="_blank"
+          rel="noopener"
+        >
+          GitHub
+        </a>
+      </nav>
+      <time></time>
+    </header>
+
+    <main></main>
+
+    <footer>
+      <p>&copy; 2020. All rights reserved</p>
+      <p>Licensed under MIT</p>
+    </footer>
+
+    <script src="./src/js/script.js" type="module"></script>
+    <script src="./sw-register.js"></script>
+  </body>
+</html>
