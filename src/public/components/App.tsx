@@ -29,7 +29,10 @@ const Button: React.FC<{
 );
 
 const AlertButton: React.FC<AlertButtonProps> = props => (
-  <Button onClick={() => alert("Hello")} {...props} />
+  <Button onClick={() => {
+    alert("Hello");
+    console.log("你好");
+  }} {...props} />
 );
 
 // But we can get them using React.ComponentProps

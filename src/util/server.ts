@@ -3,13 +3,13 @@ import http from "http";
 import Koa from "koa";
 
 interface ServerDetail {
-    app: Koa<Koa.DefaultState, Koa.DefaultContext>,
-    port: number,
-    isHttp2: boolean
+    app: Koa<Koa.DefaultState, Koa.DefaultContext>;
+    port: number;
+    isHttp2: boolean;
 }
 
 // 创建http2的Koa实例
-export async function createHTTP2ServerApp(port: number, ssl:SSLOptions): Promise<Koa> {
+export async function createHTTP2ServerApp(port: number, ssl: SSLOptions): Promise<Koa> {
     return new Promise((resolve, reject) => {
         const app = new Koa();
         const server = http2.createSecureServer({

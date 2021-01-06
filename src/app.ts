@@ -1,7 +1,13 @@
 import fs from "fs";
+import path from "path";
 import http2 from "http2";
-import Koa, { Context, Next } from "koa";
+import Koa from "koa";
+import Router from "koa-router";
+import staticFile from "koa-static";
 import { SSL_KEY_PATH, SSL_CERT_PATH, PORT } from "./util/secrets";
+
+// Controllers (route handlers)
+import * as homeContoller from "./controllers/home";
 
 const SSLKey = fs.readFileSync(SSL_KEY_PATH, { encoding: "utf-8" });
 const SSLCert = fs.readFileSync(SSL_CERT_PATH, { encoding: "utf-8" });
@@ -16,10 +22,16 @@ const server = http2.createSecureServer({
     allowHTTP1: true
 }, app.callback());
 
-app.use(async (ctx: Context, next: Next) => {
-  ctx.body = "你好";
-  return next();
-});
+/**
+ * 路由
+ */
+const router = new Router();
+router.get("/", homeContoller.index);
+
+// configuration
+app
+  .use(staticFile(path.resolve(__dirname, "./public")))
+  .use(router.routes());
 
 export default app;
 export function listenStart(callback: (port: number) => void) {
