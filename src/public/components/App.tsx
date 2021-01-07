@@ -1,5 +1,7 @@
 import * as React from "react";
-import { render } from "react-dom";
+import { render, hydrate } from "react-dom";
+
+const { useState } = React;
 
 enum ButtonVariant {
   Default,
@@ -39,14 +41,17 @@ const AlertButton: React.FC<AlertButtonProps> = props => (
 type ButtonProps = React.ComponentProps<typeof Button>;
 type AlertButtonProps = Omit<ButtonProps, "onClick">;
 
-function App() {
+export default function App() {
+  const [count, setCount] = useState(1);
   return (
-    <div>
-      <Button>default</Button>
+    <>
+      <Button onClick={() => setCount(count + 1)}>你点击了{count}次</Button>
       <AlertButton variant={ButtonVariant.Primary}>primary</AlertButton>
-    </div>
+    </>
   );
 }
 
-const rootElement = document.getElementById("root");
-render(<App />, rootElement);
+if("document" in globalThis) {
+  const rootElement = document.getElementById("root");
+  hydrate(<App />, rootElement);
+}

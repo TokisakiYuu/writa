@@ -1,0 +1,19 @@
+extends ./base.pug
+
+block head
+  if assets && mode === "production"
+    - const styles  = assets.styles  || [];
+    - const preload = assets.preload || [];
+    for item in preload
+      link(rel=(item.rel || "preload") as=item.as href=item.href)
+    for url in styles
+      link(rel="stylesheet" href=url)
+
+block body
+  #root!= html
+  if assets
+    - const scripts = assets.scripts || [];
+    - const styles  = assets.styles  || [];
+    - const preload = assets.preload || [];
+    for url in scripts
+      script(type="text/javascript" src=url)

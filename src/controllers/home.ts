@@ -1,6 +1,8 @@
-import path from "path";
+import react from "react";
 import { Context, Next } from "koa";
-import pug from "pug";
+import htmlRender from "../util/htmlRender";
+
+import App from "../public/components/App";
 
 /**
  * Home page.
@@ -8,6 +10,8 @@ import pug from "pug";
  */
 export const index = (ctx: Context, next: Next) => {
   ctx.type = "html";
-  ctx.body = pug.renderFile(path.resolve(__dirname, "../../views/home.pug"));
+  ctx.body = htmlRender(react.createElement(App), {
+    scripts: ["/components/app.component.js"]
+  });
   return next();
 };
