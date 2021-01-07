@@ -6,7 +6,6 @@ interface Environment {
 }
 
 const base: Webpack.Configuration = {
-  devtool: "inline-source-map",
   module: {
     rules: [
       {
@@ -26,11 +25,13 @@ const base: Webpack.Configuration = {
 };
 
 export default function configFunc(env: Environment): Webpack.Configuration[] {
-  const mode = env.production ? "production" : "development";
+  const mode = env.NODE_ENV === "production"? "production" : "development";
+  const devtool = mode === "development" ? "inline-source-map" : "eval";
   return [{
     // home
     ...base,
     mode,
+    devtool,
     entry: path.resolve(__dirname, "./src/public/components/App.tsx"),
     output: {
       path: path.resolve(__dirname, "./dist/public/components"),
