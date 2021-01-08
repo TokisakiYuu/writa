@@ -1,7 +1,10 @@
-import * as React from "react";
-import { render, hydrate } from "react-dom";
-
-const { useState } = React;
+import React, {
+  FC,
+  ReactNode,
+  CSSProperties,
+  useState
+} from "react";
+import { hydrate } from "react-dom";
 
 enum ButtonVariant {
   Default,
@@ -10,11 +13,11 @@ enum ButtonVariant {
 
 // Props of button aren't declared as interface or type alias
 // or maybe they are declared but library author didn't export them
-const Button: React.FC<{
+const Button: FC<{
   variant?: ButtonVariant;
-  children: React.ReactNode;
+  children: ReactNode;
   onClick?: () => void;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 }> = ({ variant, style, ...rest }) => (
   <button
     style={Object.assign(
@@ -30,7 +33,7 @@ const Button: React.FC<{
   />
 );
 
-const AlertButton: React.FC<AlertButtonProps> = props => (
+const AlertButton: FC<AlertButtonProps> = props => (
   <Button onClick={() => {
     alert("Hello");
     console.log("你好");
@@ -41,15 +44,19 @@ const AlertButton: React.FC<AlertButtonProps> = props => (
 type ButtonProps = React.ComponentProps<typeof Button>;
 type AlertButtonProps = Omit<ButtonProps, "onClick">;
 
-export default function App() {
+const App: FC<{
+  text?: string;
+}> = ({ text }) => {
   const [count, setCount] = useState(1);
   return (
     <>
       <Button onClick={() => setCount(count + 1)}>你点击了{count}次</Button>
-      <AlertButton variant={ButtonVariant.Primary}>primary</AlertButton>
+      <AlertButton variant={ButtonVariant.Primary}>{text || "primary"}</AlertButton>
     </>
   );
-}
+};
+
+export default App;
 
 if("document" in globalThis) {
   const rootElement = document.getElementById("root");

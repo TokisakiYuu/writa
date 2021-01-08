@@ -10,7 +10,8 @@ import { SSL_KEY_PATH, SSL_CERT_PATH, PORT } from "./util/secrets";
 const { Z_SYNC_FLUSH } = zlib.constants;
 
 // Controllers (route handlers)
-import * as homeContoller from "./controllers/home";
+import { SPA } from "./controllers/spa";
+import * as homeController from "./controllers/home";
 
 const SSLKey = fs.readFileSync(SSL_KEY_PATH, { encoding: "utf-8" });
 const SSLCert = fs.readFileSync(SSL_CERT_PATH, { encoding: "utf-8" });
@@ -29,7 +30,7 @@ const server = http2.createSecureServer({
  * 路由
  */
 const router = new Router();
-router.get("/", homeContoller.index);
+router.get("/", homeController.index);
 
 // configuration
 app
@@ -41,6 +42,7 @@ app
   .use(staticFile(path.resolve(__dirname, "./public"), {
     maxage: process.env.NODE_ENV === "production" ? (7 * 24 * 60 * 60 * 1000) : 0
   }))
+  .use(SPA)
   .use(router.routes());
 
 export default app;
