@@ -5,14 +5,14 @@ const configs = WebpackConfigFactory(process.env);
 
 const multiCompiler: Webpack.MultiCompiler = Webpack(configs);
 multiCompiler.compilers.forEach((compiler: Webpack.Compiler) => {
-  compiler.run((err: Error, stats: Webpack.Stats) => {
-    if(err) {
-      console.error(err);
-      return;
-    }
-    console.log(stats.toString({
-      chunks: false,
-      colors: true
-    }));
-  });
+    compiler.watch({}, (err: Error, stats: Webpack.Stats) => {
+		if(err) {
+		  console.error(err);
+		  return;
+		}
+		console.log(stats.toString({
+		  chunks: false,
+		  colors: true
+		}));
+	});
 });

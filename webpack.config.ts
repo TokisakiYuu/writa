@@ -1,5 +1,6 @@
 import path from "path";
 import Webpack from "webpack";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
 interface Environment {
   [name: string]: string;
@@ -15,12 +16,19 @@ const base: Webpack.Configuration = {
           options: {
             forceIsolatedModules: true,
             reportFiles: [
-              "src/**/*.{ts,tsx,js,jsx}"
+              "src/**/*.{ts,tsx}"
             ]
           }
         }]
+      },
+      {
+        test: /\.less$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "less-loader"]
       }
     ]
+  },
+  resolve: {
+    extensions: [".js", ".jsx", ".ts", ".tsx", ".less"],
   }
 };
 
@@ -28,16 +36,31 @@ export default function configFunc(env: Environment): Webpack.Configuration[] {
   const mode = env.NODE_ENV === "production"? "production" : "development";
   const devtool = mode === "development" ? "inline-source-map" : "eval";
   return [{
-    // home
+    // client js
     ...base,
     mode,
     devtool,
-    entry: path.resolve(__dirname, "./src/public/components/App.tsx"),
+    entry: path.resolve(__dirname, "./src/public/js/client.ts"),
     output: {
-      path: path.resolve(__dirname, "./dist/public/components"),
+      path: path.resolve(__dirname, "./dist/public/js"),
       library: "YuuLib",
       libraryTarget: "umd",
-      filename: "app.component.js",
+      filename: "client.js",
     }
+  }, {
+    // client css
+    ...base,
+    mode,
+    devtool,
+    entry: path.resolve(__dirname, "./src/public/css/client.less"),
+    output: {
+      path: path.resolve(__dirname, "./dist/public/css"),
+      library: "YuuLib",
+      libraryTarget: "umd",
+      filename: "client.css_unless.js",
+    },
+    plugins: [ new MiniCssExtractPlugin({
+      filename: "client.css"
+    }) ]
   }];
 }
