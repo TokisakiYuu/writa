@@ -4,7 +4,6 @@ import React, {
   CSSProperties,
   useState
 } from "react";
-import { hydrate } from "react-dom";
 
 enum ButtonVariant {
   Default,
@@ -35,8 +34,7 @@ const Button: FC<{
 
 const AlertButton: FC<AlertButtonProps> = props => (
   <Button onClick={() => {
-    alert("Hello");
-    console.log("你好");
+    alert("你好我是有鱼");
   }} {...props} />
 );
 
@@ -46,19 +44,20 @@ type AlertButtonProps = Omit<ButtonProps, "onClick">;
 
 const App: FC<{
   text?: string;
-}> = ({ text }) => {
+  view?: string;
+  id?: string;
+  query?: unknown;
+}> = ({ text, view, id, query }) => {
   const [count, setCount] = useState(1);
   return (
     <>
       <Button onClick={() => setCount(count + 1)}>你点击了{count}次</Button>
       <AlertButton variant={ButtonVariant.Primary}>{text || "primary"}</AlertButton>
+      <span>view: {view || "无"}</span>
+      <span>id: {id || "无"}</span>
+      <span>query: {JSON.stringify(query) || "无"}</span>
     </>
   );
 };
 
 export default App;
-
-if("document" in globalThis) {
-  const rootElement = document.getElementById("root");
-  hydrate(<App />, rootElement);
-}

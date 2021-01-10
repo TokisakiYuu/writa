@@ -2,6 +2,7 @@ import { Context, Next } from "koa";
 import React from "react";
 import App from "../public/components/App";
 import htmlRender from "../util/htmlRender";
+import parsePageURL from "../util/parsePageURL";
 
 /**
  * SPA Page
@@ -12,9 +13,10 @@ import htmlRender from "../util/htmlRender";
 export const SPA = async (ctx: Context, next: Next) => {
   if(ctx.method.toUpperCase() !== "GET") return next();
   await next();
-  const props = { text: "你好" };
+  const pageInfo = parsePageURL(ctx.path);
   ctx.type = "html";
-  ctx.body = htmlRender(<App {...props} />, {
-    scripts: ["/components/app.component.js"]
+  ctx.body = htmlRender(<App {...pageInfo} />, {
+    scripts: ["/js/client.js"],
+    styles: ["/css/client.css"]
   });
 };

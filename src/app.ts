@@ -1,8 +1,7 @@
 import fs from "fs";
 import path from "path";
 import http2 from "http2";
-import Koa, { Context, Next } from "koa";
-import Router from "koa-router";
+import Koa from "koa";
 import staticFile from "koa-static";
 import compress from "koa-compress";
 import zlib from "zlib";
@@ -11,7 +10,6 @@ const { Z_SYNC_FLUSH } = zlib.constants;
 
 // Controllers (route handlers)
 import { SPA } from "./controllers/spa";
-import * as homeController from "./controllers/home";
 
 const SSLKey = fs.readFileSync(SSL_KEY_PATH, { encoding: "utf-8" });
 const SSLCert = fs.readFileSync(SSL_CERT_PATH, { encoding: "utf-8" });
@@ -26,12 +24,6 @@ const server = http2.createSecureServer({
     allowHTTP1: true
 }, app.callback());
 
-/**
- * 路由
- */
-const router = new Router();
-router.get("/", homeController.index);
-
 // configuration
 app
   .use(compress({
@@ -42,8 +34,7 @@ app
   .use(staticFile(path.resolve(__dirname, "./public"), {
     maxage: process.env.NODE_ENV === "production" ? (7 * 24 * 60 * 60 * 1000) : 0
   }))
-  .use(SPA)
-  .use(router.routes());
+  .use(SPA);
 
 export default app;
 export function listenStart(callback: (port: number) => void) {

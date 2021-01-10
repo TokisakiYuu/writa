@@ -1,13 +1,13 @@
 extends ./base.pug
 
 block head
+  - const styles  = assets.styles  || [];
+  for url in styles
+    link(rel="stylesheet" href=url)
   if assets && mode === "production"
-    - const styles  = assets.styles  || [];
     - const preload = assets.preload || [];
     for item in preload
       link(rel=(item.rel || "preload") as=item.as href=item.href)
-    for url in styles
-      link(rel="stylesheet" href=url)
 
 block body
   #root!= html
