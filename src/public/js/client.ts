@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import parsePageURL from "../../util/parsePageURL";
 import App from "../components/App";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+declare const _DATA_: any;
 const rootElement = document.getElementById("root");
-const page = parsePageURL(location.href);
-const AppElement = React.createElement(App, page);
+const AppElement = React.createElement(App, { data: _DATA_});
 ReactDOM.hydrate(AppElement, rootElement, () => {
-    console.log("react dom 已激活");
+    console.log("[ReactDOM.hydrate]%c React DOM 已激活", "color: yellow");
 });

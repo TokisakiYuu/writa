@@ -1,19 +1,8 @@
 extends ./base.pug
 
 block head
-  - const styles  = assets.styles  || [];
-  for url in styles
-    link(rel="stylesheet" href=url)
-  if assets && mode === "production"
-    - const preload = assets.preload || [];
-    for item in preload
-      link(rel=(item.rel || "preload") as=item.as href=item.href)
+  link(rel="stylesheet" href="/css/client.css")
 
 block body
   #root!= html
-  if assets
-    - const scripts = assets.scripts || [];
-    - const styles  = assets.styles  || [];
-    - const preload = assets.preload || [];
-    for url in scripts
-      script(type="text/javascript" src=url)
+  script(type="text/javascript" src="/js/client.js")
