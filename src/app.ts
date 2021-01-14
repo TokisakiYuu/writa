@@ -4,7 +4,6 @@ import Koa from "koa";
 import Router from "koa-router";
 import staticFile from "./config/koa-static";
 import compress from "./config/koa-compress";
-import { jwtSignature, jwtVerification } from "./controllers/jwt";
 import bodyParser from "koa-bodyparser";
 import { SSL_KEY_PATH, SSL_CERT_PATH, PORT } from "./util/secrets";
 
@@ -27,11 +26,8 @@ const server = http2.createSecureServer({
 
 // routes
 const router = new Router();
-router.all("/graphql",
-  jwtVerification(),
-  graphqlServer);
+router.all("/graphql", graphqlServer);
 router.get(/.*/, SPA);
-router.get("/signature", jwtSignature());
 
 // configuration
 app
