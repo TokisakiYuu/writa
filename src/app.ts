@@ -1,15 +1,16 @@
 import fs from "fs";
-import path from "path";
 import http2 from "http2";
 import Koa from "koa";
-import staticFile from "koa-static";
-import compress from "koa-compress";
-import zlib from "zlib";
+import Router from "koa-router";
+import staticFile from "./config/koa-static";
+import compress from "./config/koa-compress";
+import { jwtSignature, jwtVerification } from "./controllers/jwt";
+import bodyParser from "koa-bodyparser";
 import { SSL_KEY_PATH, SSL_CERT_PATH, PORT } from "./util/secrets";
-const { Z_SYNC_FLUSH } = zlib.constants;
 
 // Controllers (route handlers)
 import { SPA } from "./controllers/spa";
+import { graphqlServer } from "./controllers/graphql";
 
 const SSLKey = fs.readFileSync(SSL_KEY_PATH, { encoding: "utf-8" });
 const SSLCert = fs.readFileSync(SSL_CERT_PATH, { encoding: "utf-8" });
@@ -19,22 +20,25 @@ const SSLCert = fs.readFileSync(SSL_CERT_PATH, { encoding: "utf-8" });
  */
 const app = new Koa();
 const server = http2.createSecureServer({
-    key: SSLKey,
-    cert: SSLCert,
-    allowHTTP1: true
+  key: SSLKey,
+  cert: SSLCert,
+  allowHTTP1: true
 }, app.callback());
+
+// routes
+const router = new Router();
+router.all("/graphql",
+  jwtVerification(),
+  graphqlServer);
+router.get(/.*/, SPA);
+router.get("/signature", jwtSignature());
 
 // configuration
 app
-  .use(compress({
-    gzip: { flush: Z_SYNC_FLUSH },
-    deflate: { flush: Z_SYNC_FLUSH },
-    br: false
-  }))
-  .use(staticFile(path.resolve(__dirname, "./public"), {
-    maxage: process.env.NODE_ENV === "production" ? (7 * 24 * 60 * 60 * 1000) : 0
-  }))
-  .use(SPA);
+  .use(compress())
+  .use(staticFile())
+  .use(bodyParser())
+  .use(router.routes());
 
 export default app;
 export function listenStart(callback: (port: number) => void) {
