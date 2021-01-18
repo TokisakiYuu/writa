@@ -36,11 +36,11 @@ export default function configFunc(env: Environment): Webpack.Configuration[] {
   const mode = env.NODE_ENV === "production"? "production" : "development";
   const devtool = mode === "development" ? "inline-source-map" : "eval";
   return [{
-    // client js
+    // client
     ...base,
     mode,
     devtool,
-    entry: path.resolve(__dirname, "./src/public/js/client.ts"),
+    entry: path.resolve(__dirname, "./src/public/js/client.tsx"),
     output: {
       path: path.resolve(__dirname, "./dist/public/js"),
       library: "YuuLib",
