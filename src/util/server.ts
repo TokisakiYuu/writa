@@ -10,7 +10,7 @@ interface ServerDetail {
 
 // 创建http2的Koa实例
 export async function createHTTP2ServerApp(port: number, ssl: SSLOptions): Promise<Koa> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         const app = new Koa();
         const server = http2.createSecureServer({
             key: ssl.key,
@@ -23,7 +23,7 @@ export async function createHTTP2ServerApp(port: number, ssl: SSLOptions): Promi
 
 // 创建http的Koa实例
 export async function createHTTPApp(port: number): Promise<Koa> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         const app = new Koa();
         const server = http.createServer(app.callback());
         server.listen(port, () => resolve(app));
