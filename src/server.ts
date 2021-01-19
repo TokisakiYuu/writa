@@ -7,7 +7,7 @@ const isDev = process.env.NODE_ENV === "development";
  */
 const server = listenStart(port => {
     console.log(
-        "  App is running at http://localhost:%d in %s mode",
+        "  App is running at https://localhost:%d in %s mode",
         port,
         isDev? "development" : "production"
     );

@@ -1,26 +1,9 @@
-import jwt from "jsonwebtoken";
+import mongoose from "mongoose";
+import { MONGODB_URI } from "../src/util/secrets";
+import ArticleModel, { ArticleDocument } from "../src/models/Article";
 
-const token = jwt.sign({
-  hello: "world",
-  hi: "hi",
-  howAreYou: "i am fine, thank you.",
-  whereAreYouGoing: "i am going to my company.",
-  thatsNice: "that is right.",
-  youLoveMoney: "why not ?",
-  IThinkSo: "Ha ha"
-}, "23333", {
-  expiresIn: "1h"
-});
-console.log(token);
-
-// setTimeout(() => {
-  jwt.verify(token, "23333", { maxAge: "4" }, (err, decoded) => {
-    if(err) {
-      return console.error(err);
-    }
-    console.log(decoded);
-    
-  });
-// }, 4000);
-
-
+(async () => {
+  await mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+  const doc: ArticleDocument = await ArticleModel.findOne({ title: "Do you like your room ?" });
+  console.log(doc);
+})();
