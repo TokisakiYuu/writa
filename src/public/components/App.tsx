@@ -5,6 +5,7 @@ import GlobalStyle from "./GlobalStyle";
 import Article from "./Article";
 
 const App: AppComponent = ({ data }) => {
+  console.log("this app init data is", data);
   return (
     <>
       <GlobalStyle />

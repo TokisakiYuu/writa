@@ -1,10 +1,8 @@
 import { RouterContext } from "koa-router";
 import React from "react";
 import { renderToString, renderToStaticMarkup } from "react-dom/server";
-import { ServerStyleSheet } from "styled-components";
-import flush, { flushToHTML } from "styled-jsx/server";
+import { ServerStyleSheet } from "styled-components/macro";
 import App from "../public/components/App";
-import Html from "../config/html";
 
 /**
  * SPA Page
@@ -24,7 +22,6 @@ export const SPA = async (ctx: RouterContext) => {
     ctx.throw(500);
   }
 
-  ctx.type = "html";
   ctx.body = 
   "<!DOCTYPE html>" + 
   renderToStaticMarkup(

@@ -10,3 +10,5 @@ coverage/*
 /src/types/
 # webpack config file
 webpack.config.js
+# babel-plugin-macros
+babel-plugin-macros.config.js

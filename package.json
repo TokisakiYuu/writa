@@ -9,8 +9,9 @@
     "author": "Tokisaki Yuu <tokisakiyuu@qq.com>",
     "license": "MIT",
     "scripts": {
-        "build": "npm run build-ts && npm run lint",
-        "build-ts": "concurrently \"tsc\" \"ts-node scripts/build-frontend.ts\"",
+        "build": "npm run build-ts && npm run build-frontend && npm run lint",
+        "build-ts": "babel src --extensions \".ts,.tsx\" --out-dir dist",
+        "build-frontend": "ts-node scripts/build-frontend.ts",
         "debug": "npm run build && npm run watch-debug",
         "lint": "tsc --noEmit && eslint \"**/*.{js,ts,tsx}\" --quiet --fix",
         "serve": "node dist/server.js",
@@ -22,7 +23,7 @@
         "watch-node": "nodemon dist/server.js",
         "watch-test": "npm run test -- --watchAll",
         "watch-frontend": "ts-node scripts/build-frontend-watch.ts",
-        "watch-ts": "tsc -w"
+        "watch-ts": "babel src --extensions \".ts,.tsx\" --out-dir dist --watch"
     },
     "dependencies": {
         "dotenv": "^8.2.0",
@@ -45,8 +46,8 @@
     "devDependencies": {
         "@babel/cli": "^7.12.10",
         "@babel/core": "^7.12.10",
+        "@babel/plugin-transform-runtime": "^7.12.10",
         "@babel/preset-env": "^7.12.11",
-        "@babel/preset-es2015": "^7.0.0-beta.53",
         "@babel/preset-react": "^7.12.10",
         "@babel/preset-typescript": "^7.12.7",
         "@types/concurrently": "^4.1.0",
@@ -73,6 +74,7 @@
         "@typescript-eslint/parser": "^2.3.1",
         "awesome-typescript-loader": "^5.2.1",
         "babel-loader": "^8.2.2",
+        "babel-plugin-macros": "^3.0.1",
         "babel-plugin-styled-components": "^1.12.0",
         "concurrently": "^5.3.0",
         "css-loader": "^5.0.1",

@@ -1,7 +1,7 @@
 import React, {
   FC
 } from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 const MButton = styled.button`
   color: blue;
