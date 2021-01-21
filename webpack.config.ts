@@ -11,15 +11,7 @@ const base: Webpack.Configuration = {
     rules: [
       {
         test: /\.(ts|tsx)$/,
-        use: [{
-          loader: "awesome-typescript-loader",
-          options: {
-            forceIsolatedModules: true,
-            reportFiles: [
-              "src/**/*.{ts,tsx}"
-            ]
-          }
-        }]
+        use: ["babel-loader"]
       },
       {
         test: /\.less$/i,

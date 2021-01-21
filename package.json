@@ -43,6 +43,12 @@
         "winston": "^3.2.1"
     },
     "devDependencies": {
+        "@babel/cli": "^7.12.10",
+        "@babel/core": "^7.12.10",
+        "@babel/preset-env": "^7.12.11",
+        "@babel/preset-es2015": "^7.0.0-beta.53",
+        "@babel/preset-react": "^7.12.10",
+        "@babel/preset-typescript": "^7.12.7",
         "@types/concurrently": "^4.1.0",
         "@types/eslint": "^6.1.1",
         "@types/graphql": "^14.5.0",
@@ -66,6 +72,8 @@
         "@typescript-eslint/eslint-plugin": "^2.3.1",
         "@typescript-eslint/parser": "^2.3.1",
         "awesome-typescript-loader": "^5.2.1",
+        "babel-loader": "^8.2.2",
+        "babel-plugin-styled-components": "^1.12.0",
         "concurrently": "^5.3.0",
         "css-loader": "^5.0.1",
         "eslint": "^6.4.0",
