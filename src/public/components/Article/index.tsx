@@ -29,7 +29,7 @@ interface OtherProps {
   hello: string;
 };
 
-const Other = styled.input.attrs({
+const Other = styled.input.attrs<OtherProps>({
   "data-hello": "world"
 })<OtherProps>`
   background-color: red;
