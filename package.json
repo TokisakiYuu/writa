@@ -10,7 +10,7 @@
     "license": "MIT",
     "scripts": {
         "build": "npm run build-ts && npm run build-frontend && npm run lint",
-        "build-ts": "babel src --extensions \".ts,.tsx\" --out-dir dist",
+        "build-ts": "babel src --extensions \".ts,.tsx\" --out-dir dist --source-maps",
         "build-frontend": "ts-node scripts/build-frontend.ts",
         "debug": "npm run build && npm run watch-debug",
         "lint": "tsc --noEmit && eslint \"**/*.{js,ts,tsx}\" --quiet --fix",
@@ -23,7 +23,7 @@
         "watch-node": "nodemon dist/server.js",
         "watch-test": "npm run test -- --watchAll",
         "watch-frontend": "ts-node scripts/build-frontend-watch.ts",
-        "watch-ts": "babel src --extensions \".ts,.tsx\" --out-dir dist --watch"
+        "watch-ts": "npm run build-ts -- --watch"
     },
     "dependencies": {
         "dotenv": "^8.2.0",
@@ -34,12 +34,14 @@
         "koa-router": "^10.0.0",
         "koa-static": "^5.0.0",
         "less": "^4.0.0",
+        "lodash": "^4.17.20",
         "mime": "^2.4.7",
         "mongoose": "^5.11.12",
         "pug": "^2.0.4",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
         "styled-components": "^5.2.1",
+        "use-ssr": "^1.0.23",
         "utf8-byte-length": "^1.0.4",
         "winston": "^3.2.1"
     },
@@ -60,6 +62,7 @@
         "@types/koa-router": "^7.4.1",
         "@types/koa-static": "^4.0.1",
         "@types/less": "^3.0.2",
+        "@types/lodash": "^4.14.168",
         "@types/mime": "^2.0.3",
         "@types/mini-css-extract-plugin": "^1.2.2",
         "@types/node": "^12.19.11",
