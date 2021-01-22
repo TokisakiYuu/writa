@@ -7,8 +7,6 @@ import App from "../public/components/App";
 /**
  * SPA Page
  * @route GET /**
- * @description
- * 单页应用，根据url来渲染首屏页面的html
  */
 export const SPA = async (ctx: RouterContext) => {
   const data = { article: { title: "hello" , content: "花菜" } };

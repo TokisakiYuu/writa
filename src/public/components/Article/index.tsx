@@ -13,7 +13,6 @@ const Article: ArticleComponent = () => {
       <Header change={changed} />
       <Body />
       <Footer />
-      <Other hello="world" />
     </Container>
   );
 };
@@ -23,16 +22,6 @@ const Container = styled.article.attrs({
   itemType: "https://schema.org/Article"
 })`
   background-color: #808080;
-`;
-
-interface OtherProps {
-  hello: string;
-};
-
-const Other = styled.input.attrs<OtherProps>({
-  "data-hello": "world"
-})<OtherProps>`
-  background-color: red;
 `;
 
 export default Article;

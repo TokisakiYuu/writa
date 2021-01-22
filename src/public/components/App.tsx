@@ -1,11 +1,12 @@
 import React, {
-  FC
+  FC,
 } from "react";
 import GlobalStyle from "./GlobalStyle";
 import Article from "./Article";
+// import useSSR from "use-ssr";
 
 const App: AppComponent = ({ data }) => {
-  console.log("this app init data is", data);
+  data;
   return (
     <>
       <GlobalStyle />
