@@ -3,6 +3,8 @@
     "Tokisaki",
     "bodyparser",
     "itemscope",
-    "maxage"
+    "maxage",
+    "tapable",
+    "yuulog"
   ]
 }
