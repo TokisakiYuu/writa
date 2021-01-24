@@ -3,14 +3,22 @@ import React, {
 } from "react";
 import GlobalStyle from "./GlobalStyle";
 import Article from "./Article";
-// import useSSR from "use-ssr";
+import PageHeader from "./PageHeader";
+import PageFooter from "./PageFooter";
+import ArticleList from "./ArticleList";
 
 const App: AppComponent = ({ data }) => {
   data;
   return (
     <>
       <GlobalStyle />
-      <Article />
+      <PageHeader />
+      <ArticleList>
+        <Article />
+        <Article />
+        <Article />
+      </ArticleList>
+      <PageFooter />
     </>
   );
 };

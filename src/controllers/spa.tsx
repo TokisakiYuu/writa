@@ -48,7 +48,7 @@ export const SPA = async (ctx: RouterContext) => {
         {sheet.getStyleElement()}
     </head>
     <body>
-        <div id="root" dangerouslySetInnerHTML={{__html: htmlContent}}></div>
+        <main id="root" dangerouslySetInnerHTML={{__html: htmlContent}}></main>
     </body>
     <script type="text/javascript" dangerouslySetInnerHTML={{__html: `var _DATA_=${JSON.stringify(data)}`}} />
     <script type="text/javascript" src="/js/client.js" />
