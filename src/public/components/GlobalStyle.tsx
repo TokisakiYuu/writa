@@ -1,15 +1,9 @@
 import { createGlobalStyle } from "styled-components/macro";
+import Var from "../js/util/CSSVar";
 
 interface GlobalStyleProps {
   fontSize?: number;
   [prop: string]: string | number;
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function Var(propName: string, defaultValue: any): (props: GlobalStyleProps) => string {
-  return props => propName in props
-    ? String(props[propName])
-    : defaultValue;
 }
 
 export default createGlobalStyle<GlobalStyleProps>`
