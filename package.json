@@ -26,6 +26,7 @@
         "watch-ts": "npm run build-ts -- --watch"
     },
     "dependencies": {
+        "@tweenjs/tween.js": "^18.6.4",
         "animated-scroll-to": "^2.0.12",
         "body-scroll-lock": "^3.1.5",
         "dotenv": "^8.2.0",
