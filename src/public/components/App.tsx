@@ -2,13 +2,12 @@ import React, {
   FC,
 } from "react";
 import GlobalStyle from "./GlobalStyle";
-import styled from "styled-components/macro";
 import Article from "./Article";
 import PageHeader from "./PageHeader";
 import PageFooter from "./PageFooter";
 import ArticleList from "./ArticleList";
 
-import MagnetBox from "./MagnetBox";
+import EasingBox from "./EasingBox";
 
 const App: AppComponent = ({ data }) => {
   data;
@@ -23,22 +22,10 @@ const App: AppComponent = ({ data }) => {
       </ArticleList>
       <PageFooter /> */}
 
-      <StyledMagnetBox>
-        <div style={{
-          fontSize: 30,
-          width: 100,
-          backgroundColor: "green"
-        }}>hello</div>
-      </StyledMagnetBox>
+      <EasingBox />
     </>
   );
 };
-
-const StyledMagnetBox = styled(MagnetBox)`
-  position: relative;
-  top: 80px;
-  left: 80px;
-`;
 
 type AppComponent = FC<{
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
