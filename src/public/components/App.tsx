@@ -14,15 +14,15 @@ const App: AppComponent = ({ data }) => {
   return (
     <>
       <GlobalStyle />
-      {/* <PageHeader />
+      <PageHeader />
       <ArticleList>
         <Article />
         <Article />
         <Article />
       </ArticleList>
-      <PageFooter /> */}
+      <PageFooter />
 
-      <EasingBox />
+      {/* <EasingBox /> */}
     </>
   );
 };
