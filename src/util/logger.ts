@@ -1,19 +1,31 @@
-import path from "path";
-import winston from "winston";
+import console from "console";
+import loglevel from "loglevel";
+import colors from "colors";
 
-const options: winston.LoggerOptions = {
-  transports: [
-    new winston.transports.Console({
-        level: process.env.NODE_ENV === "production" ? "error" : "debug"
-    }),
-    new winston.transports.File({ filename: path.resolve(__dirname, "../../debug.log"), level: "debug" })
-  ]
+const isProductionMode = process.env.NODE_ENV === "production";
+const levels = loglevel.levels;
+
+const log = loglevel.getLogger("Yuulog");
+
+log.methodFactory = function(methodName, logLevel, loggerName) {
+  return function (message) {
+    let effect = "";
+    if(methodName === "trace") {
+      effect += colors.bgBlue(" ") + " " + colors.bold(message);
+    } else if(methodName === "debug") {
+      effect += colors.bgCyan(" ") + " " + message;
+    } else if(methodName === "info") {
+      effect += colors.bgGreen(" ") + " " + colors.italic(message);
+    } else if(methodName === "warn") {
+      effect += colors.bgYellow(" ") + " " + colors.yellow(message);
+    } else if(methodName === "error") {
+      effect += colors.bgRed(" ") + " " + colors.red(message);
+    }
+    effect += " ";
+    console.log(effect);
+  };
 };
 
-const logger = winston.createLogger(options);
+log.setLevel(isProductionMode ? levels.INFO : levels.TRACE);
 
-if (process.env.NODE_ENV !== "production") {
-  logger.debug("Logging initialized at debug level");
-}
-
-export default logger;
+export default log;
