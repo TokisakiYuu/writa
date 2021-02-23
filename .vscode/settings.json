@@ -4,6 +4,7 @@
     "beezy",
     "bodyparser",
     "itemscope",
+    "loglevel",
     "maxage",
     "tapable",
     "yuulog"

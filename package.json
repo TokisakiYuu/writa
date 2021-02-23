@@ -30,6 +30,7 @@
         "animated-scroll-to": "^2.0.12",
         "beezy": "^1.1.1",
         "body-scroll-lock": "^3.1.5",
+        "colors": "^1.4.0",
         "dotenv": "^8.2.0",
         "graphql": "^15.4.0",
         "koa": "^2.13.0",
@@ -39,6 +40,7 @@
         "koa-static": "^5.0.0",
         "less": "^4.0.0",
         "lodash": "^4.17.20",
+        "loglevel": "^1.7.1",
         "mime": "^2.4.7",
         "mobx": "^6.1.7",
         "mobx-react-lite": "^3.2.0",
@@ -48,8 +50,7 @@
         "react-dom": "^17.0.1",
         "styled-components": "^5.2.1",
         "use-ssr": "^1.0.23",
-        "utf8-byte-length": "^1.0.4",
-        "winston": "^3.2.1"
+        "utf8-byte-length": "^1.0.4"
     },
     "devDependencies": {
         "@babel/cli": "^7.12.10",
@@ -79,7 +80,6 @@
         "@types/styled-components": "^5.1.7",
         "@types/tapable": "1.0.0",
         "@types/webpack": "^4.41.25",
-        "@types/winston": "^2.4.4",
         "@typescript-eslint/eslint-plugin": "^2.3.1",
         "@typescript-eslint/parser": "^2.3.1",
         "awesome-typescript-loader": "^5.2.1",
