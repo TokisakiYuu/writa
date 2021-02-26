@@ -1,18 +1,12 @@
-import { RouterContext } from "koa-router";
 import React from "react";
 import { renderToString, renderToStaticMarkup } from "react-dom/server";
 import { ServerStyleSheet } from "styled-components/macro";
-import App from "../public/components/App";
-import Document from "../public/site/theme/template/Document";
+import Document from "./template/Document";
 
-/**
- * SPA Page
- * @route GET /**
- */
-export const SPA = async (ctx: RouterContext) => {
-  const data = { article: { title: "hello" , content: "花菜" } };
+export default function render(data: Record<string, unknown>) {
   let htmlContent: string;
   const sheet = new ServerStyleSheet();
+  
   try {
     const ReactAppElement = React.createElement(App, { data });
     htmlContent = renderToString(sheet.collectStyles(ReactAppElement));
@@ -55,4 +49,4 @@ export const SPA = async (ctx: RouterContext) => {
     <script type="text/javascript" src="/js/client.js" />
     </html>
   );
-};
+}

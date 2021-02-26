@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components/macro";
-import Var from "../js/util/CSSVar";
+import Var from "./_util/CSSVar";
 
 interface GlobalStyleProps {
   fontSize?: number;

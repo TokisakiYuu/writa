@@ -9,6 +9,7 @@ module.exports = {
   plugins: [
     "@babel/plugin-transform-runtime",
     "babel-plugin-macros",
-    "transform-class-properties"
+    "transform-class-properties",
+    "babel-plugin-add-react-displayname"
   ]
 };
