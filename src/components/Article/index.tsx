@@ -1,15 +1,17 @@
 import React, { FC } from "react";
+import { action } from "mobx";
 import { observer } from "mobx-react-lite";
 import styled from "styled-components/macro";
 import Var from "../_util/CSSVar";
-import * as bodyScrollLock from "body-scroll-lock";
-import animateScrollTo from "animated-scroll-to";
-import store from "../../site/client/store";
+// import * as bodyScrollLock from "body-scroll-lock";
+// import animateScrollTo from "animated-scroll-to";
+import { useStore } from "../../site/store";
 
 const Article: FC<{}> = () => {
+  const store = useStore();
   return (
     <Box>
-      <span onClick={() => store.toView("article")}>我是文章 当前view: {store.currentView}</span>
+      <span onClick={action(() => store.currentView = "article")}>我是文章 当前view: {store.currentView}</span>
     </Box>
   );
 };

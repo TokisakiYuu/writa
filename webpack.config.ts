@@ -32,27 +32,27 @@ export default function configFunc(env: Environment): Webpack.Configuration[] {
     ...base,
     mode,
     devtool,
-    entry: path.resolve(__dirname, "./src/public/js/client.tsx"),
+    entry: path.resolve(__dirname, "./src/site/client.tsx"),
     output: {
-      path: path.resolve(__dirname, "./dist/public/js"),
+      path: path.resolve(__dirname, "./dist/site/_public"),
       library: "YuuLib",
       libraryTarget: "umd",
-      filename: "client.js",
+      filename: "index.js",
     }
   }, {
     // client css
     ...base,
     mode,
     devtool,
-    entry: path.resolve(__dirname, "./src/public/css/client.less"),
+    entry: path.resolve(__dirname, "./src/site/theme/static/client.less"),
     output: {
-      path: path.resolve(__dirname, "./dist/public/css"),
+      path: path.resolve(__dirname, "./dist/site/_public"),
       library: "YuuLib",
       libraryTarget: "umd",
       filename: "client.css_unless.js",
     },
     plugins: [ new MiniCssExtractPlugin({
-      filename: "client.css"
+      filename: "index.css"
     }) ]
   }];
 }

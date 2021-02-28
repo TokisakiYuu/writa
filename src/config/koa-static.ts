@@ -3,7 +3,7 @@ import { Middleware } from "koa";
 import serve from "koa-static";
 
 const factory = (): Middleware => (
-  serve(path.resolve(__dirname, "../public"), {
+  serve(path.resolve(__dirname, "../site/_public"), {
     maxage: process.env.NODE_ENV === "production" ? (7 * 24 * 60 * 60 * 1000) : 0
   })
 );
