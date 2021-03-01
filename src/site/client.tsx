@@ -4,13 +4,11 @@
 
 import React from "react";
 import ReactDOM from "react-dom";
-import { makeReaction, AppStatusData } from "./store";
+import { initStore, AppStatusData } from "./store";
 import Layout from "./theme/template/Layout";
 
 declare const _DATA_: AppStatusData;
-// 准备状态数据
-makeReaction(_DATA_);
-
+initStore(_DATA_);
 const isProduction = process.env.NODE_ENV === "production";
 const isDevelopment = !isProduction;
 

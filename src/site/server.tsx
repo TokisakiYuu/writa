@@ -2,14 +2,13 @@
  * 供路由handler调用，并使用React的服务端渲染api得到html代码
  */
 import React from "react";
-import { AppStatusData, makeReaction } from "./store";
+import { AppStatusData, initStore } from "./store";
 import { renderToString, renderToStaticMarkup } from "react-dom/server";
 import { ServerStyleSheet } from "styled-components/macro";
 import Layout from "./theme/template/Layout";
 
 export function render(data: AppStatusData) {
-  // 准备状态数据
-  makeReaction(data);
+  initStore(data);
   const sheet = new ServerStyleSheet();
   const layoutHTML = renderToString(sheet.collectStyles(<Layout />));
   return (

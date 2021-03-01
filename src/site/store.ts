@@ -1,29 +1,27 @@
-import { observable } from "mobx";
-
-let data: AppStatusData;
-let observableData: AppStatusData;
+import { observable, action, isAction } from "mobx";
+export { observer } from "mobx-react-lite";
 
 export type AppStatusData = {
   currentView: string;
 };
 
-export function setData(init: AppStatusData) {
-  data = init;
-  return data;
-}
+let data: AppStatusData;
+let observableData: AppStatusData;
 
-export function makeReaction(init?: AppStatusData) {
-  if(init) {
-    setData(init);
-  }
+export function initStore(initData: AppStatusData) {
+  data = initData;
   observableData = observable(data);
-  return observableData;
 }
 
 export function useStore() {
   return observableData;
 }
 
-export function useStoreRaw() {
+export function useRaw() {
   return data;
+}
+
+export function useAction(fn: () => void): () => void {
+  if(isAction(fn)) return fn;
+  return action(fn);
 }
