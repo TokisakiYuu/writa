@@ -8,8 +8,8 @@ module.exports = {
   ],
   plugins: [
     "@babel/plugin-transform-runtime",
+    "@babel/plugin-transform-react-display-name",
+    "@babel/plugin-proposal-class-properties",
     "babel-plugin-macros",
-    "transform-class-properties",
-    "babel-plugin-add-react-displayname"
   ]
 };
