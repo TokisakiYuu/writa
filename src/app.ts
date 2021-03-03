@@ -26,7 +26,7 @@ const server = http2.createSecureServer({
 
 // routes
 const router = new Router();
-router.all("/graphql", graphqlServer);
+router.post("/graphql", graphqlServer);
 router.get(/.*/, SPA);
 
 // configuration
