@@ -1,21 +1,11 @@
-import {
-  GraphQLSchema,
-  GraphQLObjectType,
-  GraphQLString,
-} from "graphql";
+import { buildSchema } from "graphql";
  
-const schema = new GraphQLSchema({
-  query: new GraphQLObjectType({
-    name: "RootQueryType",
-    fields: {
-      hello: {
-        type: GraphQLString,
-        resolve() {
-          return "world";
-        },
-      },
-    },
-  }),
-});
+export const schema = buildSchema(`
+  type Query {
+    hello: String
+  }
+`);
 
-export default schema;
+export const resolvers = {
+  hello: () => "world"
+};
