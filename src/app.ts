@@ -5,6 +5,7 @@ import Router from "koa-router";
 import staticFile from "./config/koa-static";
 import compress from "./config/koa-compress";
 import bodyParser from "koa-bodyparser";
+import koaLogger from "koa-logger";
 import { SSL_KEY_PATH, SSL_CERT_PATH, PORT, ENVIRONMENT } from "./util/secrets";
 
 // Controllers (route handlers)
@@ -41,6 +42,7 @@ if(isDevelopment) {
 
 // configuration
 app
+  .use(koaLogger())
   .use(compress())
   .use(staticFile())
   .use(bodyParser())
