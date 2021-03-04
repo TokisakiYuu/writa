@@ -5,14 +5,18 @@ import Router from "koa-router";
 import staticFile from "./config/koa-static";
 import compress from "./config/koa-compress";
 import bodyParser from "koa-bodyparser";
-import { SSL_KEY_PATH, SSL_CERT_PATH, PORT } from "./util/secrets";
+import { SSL_KEY_PATH, SSL_CERT_PATH, PORT, ENVIRONMENT } from "./util/secrets";
 
 // Controllers (route handlers)
-import { SPA } from "./controllers/spa";
-import { graphqlServer } from "./controllers/graphql";
+import { spaEnterPoint } from "./controllers/spa";
+import graphqlPlayground from "graphql-playground-middleware-koa";
+import graphqlHTTP from "koa-graphql";
+import schema from "./data/types/Schema";
 
+const isDevelopment = ENVIRONMENT !== "production";
 const SSLKey = fs.readFileSync(SSL_KEY_PATH, { encoding: "utf-8" });
 const SSLCert = fs.readFileSync(SSL_CERT_PATH, { encoding: "utf-8" });
+const graphqlEndpointPath = "/graphql";
 
 /**
  * create Http/2 Server
@@ -26,8 +30,14 @@ const server = http2.createSecureServer({
 
 // routes
 const router = new Router();
-router.post("/graphql", graphqlServer);
-router.get(/.*/, SPA);
+router
+  .all(graphqlEndpointPath, graphqlHTTP({ schema }))
+  .get(/.*/, spaEnterPoint({
+    exclude: ["/playground", graphqlEndpointPath]
+  }));
+if(isDevelopment) {
+  router.get("/playground", graphqlPlayground({ endpoint: graphqlEndpointPath }));
+}
 
 // configuration
 app

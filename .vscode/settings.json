@@ -4,6 +4,7 @@
     "autorun",
     "beezy",
     "bodyparser",
+    "graphiql",
     "itemscope",
     "loglevel",
     "maxage",
