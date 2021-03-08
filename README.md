@@ -6,6 +6,7 @@ blog system.
 
 private.
 
+[view code online](https://github1s.com/TokisakiYuu/Yuulog)
 
 ## Maintainers
 
