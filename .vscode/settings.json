@@ -4,6 +4,7 @@
     "autorun",
     "beezy",
     "bodyparser",
+    "dataloader",
     "envalid",
     "graphiql",
     "itemscope",
