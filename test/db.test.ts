@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import { MONGODB_URI } from "../src/util/secrets";
+import env from "../src/util/environment";
 
 const collectionName = "_jest_temp";
 const tempSchema = new Schema({
@@ -12,7 +12,7 @@ const TempModel = mongoose.model(collectionName, tempSchema);
 describe("mongoose test", () => {
 
   test("connect to mongodb", async () => {
-    await mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+    await mongoose.connect(env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
     expect(mongoose.connection.readyState).toEqual(mongoose.STATES.connected);
   }, 20000);
 

@@ -1,12 +1,8 @@
-import { listenStart } from "./app";
+import { launch } from "./app";
 import log from "./util/logger";
+import env from "./util/environment";
 
-/**
- * listen port
- */
-const server = listenStart(port => {
-  log.info(`App is running at https://localhost:${port} in ${process.env.NODE_ENV !== "production"? "development" : "production"} mode`);
+launch(env.PORT, () => {
+  log.info(`App is running at https://localhost:${env.PORT} in ${env.isDev? "development" : "production"} mode`);
   log.info("Press CTRL-C to stop\n");
 });
-
-export default server;

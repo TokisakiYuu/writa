@@ -6,7 +6,7 @@ import staticFile from "./config/koa-static";
 import compress from "./config/koa-compress";
 import bodyParser from "koa-bodyparser";
 import koaLogger from "koa-logger";
-import { SSL_KEY_PATH, SSL_CERT_PATH, PORT, ENVIRONMENT } from "./util/secrets";
+import env from "./util/environment";
 
 // Controllers (route handlers)
 import { spaEnterPoint } from "./controllers/spa";
@@ -14,9 +14,8 @@ import graphqlPlayground from "graphql-playground-middleware-koa";
 import graphqlHTTP from "koa-graphql";
 import schema from "./data/types/Schema";
 
-const isDevelopment = ENVIRONMENT !== "production";
-const SSLKey = fs.readFileSync(SSL_KEY_PATH, { encoding: "utf-8" });
-const SSLCert = fs.readFileSync(SSL_CERT_PATH, { encoding: "utf-8" });
+const SSLKey = fs.readFileSync(env.SSL_KEY_PATH, { encoding: "utf-8" });
+const SSLCert = fs.readFileSync(env.SSL_CERT_PATH, { encoding: "utf-8" });
 const graphqlEndpointPath = "/graphql";
 
 /**
@@ -36,7 +35,7 @@ router
   .get(/.*/, spaEnterPoint({
     exclude: ["/playground", graphqlEndpointPath]
   }));
-if(isDevelopment) {
+if(env.isDevelopment) {
   router.get("/playground", graphqlPlayground({ endpoint: graphqlEndpointPath }));
 }
 
@@ -48,9 +47,7 @@ app
   .use(bodyParser())
   .use(router.routes());
 
-export default app;
-export function listenStart(callback: (port: number) => void) {
-  const port = Number(PORT);
-  server.listen(port, () => callback(port));
-  return server;
+export function launch(port: number, callback: () => void) {
+  server.listen(port, callback);
+  return app;
 }
