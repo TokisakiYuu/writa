@@ -1,0 +1,39 @@
+schema {
+  query: Root
+  mutation: Mutation
+}
+
+# The top-level API
+type Root {
+  # 文章
+  article(
+    # 食物名
+    foodName: Food! = A
+  ): Article!
+}
+
+# 文章
+type Article {
+  # 文章标题
+  title: String!
+
+  # 文章内容
+  content: String!
+  createdAt: Date
+  updateAt: Date
+}
+
+# 时间类型
+scalar Date
+
+# 食物
+enum Food {
+  # 花菜
+  A
+
+  # 芒果
+  B
+}
+
+# updates API
+type Mutation
