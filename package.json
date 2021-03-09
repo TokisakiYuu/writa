@@ -53,7 +53,7 @@
         "mobx": "^6.1.7",
         "mobx-react-lite": "^3.2.0",
         "mongoose": "^5.11.13",
-        "pug": "^2.0.4",
+        "pug": "^3.0.2",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
         "reactive.macro": "0.0.7",
