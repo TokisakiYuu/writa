@@ -44,7 +44,8 @@ const EasingBox: FC<{
     <div style={{
       width: 20,
       height: 20,
-      backgroundColor: "black",
+      backgroundColor: "yellow",
+      mixBlendMode: "overlay",
       borderRadius: "50%",
       willChange: "transform",
       position: "fixed",

@@ -6,7 +6,7 @@ import PageHeader from "../PageHeader";
 import PageFooter from "../PageFooter";
 import ArticleList from "../ArticleList";
 
-// import EasingBox from "../EasingBox";
+import EasingBox from "../EasingBox";
 
 const App: FC<{}> = () => {
   return (
@@ -20,7 +20,7 @@ const App: FC<{}> = () => {
       </ArticleList>
       <PageFooter />
 
-      {/* <EasingBox /> */}
+      <EasingBox />
     </>
   );
 };
