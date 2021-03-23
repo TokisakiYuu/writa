@@ -148,3 +148,12 @@ yarn.lock
 
 # secret
 *.pem
+docs/index.html
+docs/modules.html
+docs/assets/css/main.css
+docs/assets/images/icons.png
+docs/assets/images/icons@2x.png
+docs/assets/images/widgets.png
+docs/assets/images/widgets@2x.png
+docs/assets/js/main.js
+docs/assets/js/search.js

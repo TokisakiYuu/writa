@@ -25,7 +25,8 @@
         "watch-test": "npm run test -- --watchAll",
         "watch-frontend": "ts-node scripts/build-frontend-watch.ts",
         "watch-ts": "npm run build-ts -- --watch",
-        "output-graphql-schema": "ts-node scripts/print-graphql-schema.ts"
+        "output-graphql-schema": "ts-node scripts/print-graphql-schema.ts",
+        "generate-doc": "typedoc src/app.ts"
     },
     "dependencies": {
         "@tweenjs/tween.js": "^18.6.4",
@@ -113,6 +114,7 @@
         "ts-jest": "^24.1.0",
         "ts-loader": "^8.0.14",
         "ts-node": "^8.4.1",
+        "typedoc": "^0.20.33",
         "typescript": "^3.6.3",
         "webpack": "^5.17.0"
     },

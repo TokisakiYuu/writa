@@ -61,6 +61,12 @@ app
   .use(bodyParser())
   .use(router.routes());
 
+/**
+ * 启动博客
+ * @param port 端口号
+ * @param callback 启动成功回调
+ * @returns {Koa} koa实例
+ */
 export function launch(port: number, callback: () => void) {
   server.listen(port, callback);
   return app;

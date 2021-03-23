@@ -11,6 +11,8 @@
     "loglevel",
     "maxage",
     "tapable",
+    "tweenjs",
+    "typedoc",
     "yuulog"
   ]
 }
