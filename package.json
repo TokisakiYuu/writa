@@ -1,10 +1,10 @@
 {
-    "name": "yuulog",
+    "name": "writa",
     "version": "0.1.0",
     "description": "best blog system for myself",
     "repository": {
         "type": "git",
-        "url": "https://github.com/TokisakiYuu/Yuulog.git"
+        "url": "https://github.com/TokisakiYuu/writa.git"
     },
     "author": "Tokisaki Yuu <tokisakiyuu@qq.com>",
     "license": "MIT",

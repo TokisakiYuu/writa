@@ -1,4 +1,4 @@
-# YuuLog
+# Writa
 
 [![license](https://img.shields.io/static/v1?label=license&message=MIT&color=<COLOR>)](https://github.com/TokisakiYuu/Yuu-typescript-web-starter/blob/main/LICENSE) 
 
@@ -6,7 +6,7 @@ blog system.
 
 private.
 
-[view code online](https://github1s.com/TokisakiYuu/Yuulog)
+[view code online](https://github1s.com/TokisakiYuu/writa)
 
 ## Maintainers
 
