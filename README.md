@@ -4,7 +4,7 @@
 
 blog system.
 
-private.
+in devlopment, private.
 
 [view code online](https://github1s.com/TokisakiYuu/writa)
 
