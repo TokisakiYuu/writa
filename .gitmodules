@@ -1,0 +1,3 @@
+[submodule "writa-graphql-server"]
+	path = writa-graphql-server
+	url = https://github.com/TokisakiYuu/writa-graphql-server.git
