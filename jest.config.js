@@ -15,5 +15,9 @@ module.exports = {
     "**/test/**/*.test.(ts|js)",
     "**/__test__/**/*.test.(ts|js)"
   ],
+  testPathIgnorePatterns: [
+    "/node_modules/",
+    "/writa-graphql-server/"
+  ],
   testEnvironment: "node"
 };
