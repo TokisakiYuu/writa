@@ -69,5 +69,10 @@ app
  */
 export function launch(port: number, callback: () => void) {
   server.listen(port, callback);
+  process.once("SIGHUP", function () {
+    server.close(() => {
+      process.exit(0);
+    });
+  });
   return app;
 }

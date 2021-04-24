@@ -1,6 +1,7 @@
 import path from "path";
 import Webpack from "webpack";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import CopyPlugin from "copy-webpack-plugin";
 
 interface Environment {
   [name: string]: string;
@@ -28,7 +29,7 @@ export default function configFunc(env: Environment): Webpack.Configuration[] {
   const mode = env.NODE_ENV === "production"? "production" : "development";
   const devtool = mode === "development" ? "inline-source-map" : "eval";
   return [{
-    // client
+    // react client
     ...base,
     mode,
     devtool,
@@ -38,21 +39,16 @@ export default function configFunc(env: Environment): Webpack.Configuration[] {
       library: "YuuLib",
       libraryTarget: "umd",
       filename: "index.js",
-    }
-  }, {
-    // client css
-    ...base,
-    mode,
-    devtool,
-    entry: path.resolve(__dirname, "./src/site/theme/static/client.less"),
-    output: {
-      path: path.resolve(__dirname, "./dist/site/_public"),
-      library: "YuuLib",
-      libraryTarget: "umd",
-      filename: "client.css_unless.js",
     },
-    plugins: [ new MiniCssExtractPlugin({
-      filename: "index.css"
-    }) ]
+    plugins: [
+      new CopyPlugin({
+        patterns: [
+          {
+            from: path.resolve(__dirname, "./src/site/theme/static"),
+            to: path.resolve(__dirname, "./dist/site/_public")
+          },
+        ],
+      })
+    ]
   }];
 }

@@ -1,2 +1,2 @@
-import App from "../../../../components/App";
-export default App;
+import Framework from "./Framework";
+export default Framework;

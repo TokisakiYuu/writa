@@ -10,6 +10,7 @@ coverage/*
 webpack.config.js
 # babel-plugin-macros
 babel-plugin-macros.config.js
-
 # git submodule
 writa-graphql-server
+# js
+**/*.js

@@ -1,0 +1,7 @@
+{
+    "restartable": "r",
+    "ext": "js,json",
+    "verbose": false,
+    "ignore": ["dist/site/_public/"],
+    "delay": 1000
+}

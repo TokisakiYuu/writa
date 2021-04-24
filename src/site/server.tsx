@@ -35,7 +35,6 @@ export function render(data: AppStatusData) {
           <meta name="theme-color" content="#f0f0f0" />
           <meta name="color-scheme" content="light" />
           <meta name="mobile-web-app-capable" content="yes" />
-          <link rel="stylesheet" type="text/css" href="/index.css" />
           {sheet.getStyleElement()}
       </head>
       <body>

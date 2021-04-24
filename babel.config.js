@@ -10,6 +10,6 @@ module.exports = {
     "@babel/plugin-transform-runtime",
     "@babel/plugin-transform-react-display-name",
     "@babel/plugin-proposal-class-properties",
-    "babel-plugin-macros",
+    "babel-plugin-macros"
   ]
 };
