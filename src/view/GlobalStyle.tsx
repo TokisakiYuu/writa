@@ -12,11 +12,11 @@ interface GlobalStyleProps {
 const FontFace = css`
   @font-face {
     font-family: 'shortcuts';
-    src:  url('/fonts/shortcuts.eot');
-    src:  url('/fonts/shortcuts.eot') format('embedded-opentype'),
-      url('/fonts/shortcuts.ttf?re3fex') format('truetype'),
-      url('/fonts/shortcuts.woff') format('woff'),
-      url('/fonts/shortcuts.svg') format('svg');
+    src:  url(${require("./_static/fonts/shortcuts.eot")});
+    src:  url(${require("./_static/fonts/shortcuts.eot")}) format('embedded-opentype'),
+      url(${require("./_static/fonts/shortcuts.ttf")}) format('truetype'),
+      url(${require("./_static/fonts/shortcuts.woff")}) format('woff'),
+      url(${require("./_static/fonts/shortcuts.svg")}) format('svg');
     font-weight: normal;
     font-style: normal;
     font-display: block;

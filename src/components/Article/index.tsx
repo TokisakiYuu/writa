@@ -1,22 +1,12 @@
 import React, { FC } from "react";
 import styled from "styled-components/macro";
 import Var from "../_util/CSSVar";
-import { useStore, useAction, observer } from "../../site/store";
-// import * as bodyScrollLock from "body-scroll-lock";
-// import animateScrollTo from "animated-scroll-to";
 
-const Article: FC<{}> = () => {
-  const store = useStore();
-  const changeView = useAction(() => {
-    store.currentView = store.currentView != "article" ? "article" : "home";
-  });
-
-  return (
-    <Box>
-      <span onClick={changeView}>我是文章 当前view: {store.currentView}</span>
-    </Box>
-  );
-};
+const Article: FC<{}> = () => (
+  <Box>
+    <span>我是文章</span>
+  </Box>
+);
 
 const Box = styled.article.attrs({
   itemScope: true,
@@ -28,4 +18,4 @@ const Box = styled.article.attrs({
   border-bottom: 1px solid red;
 `;
 
-export default observer(Article);
+export default Article;

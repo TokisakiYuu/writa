@@ -2,15 +2,13 @@
  * 供路由handler调用，并使用React的服务端渲染api得到html代码
  */
 import React from "react";
-import { AppStatusData, initStore } from "./store";
 import { renderToString, renderToStaticMarkup } from "react-dom/server";
 import { ServerStyleSheet } from "styled-components/macro";
-import Layout from "./theme/template/Layout";
+import App from "../view";
 
-export function render(data: AppStatusData) {
-  initStore(data);
+export async function render(data: Record<string, unknown>) {
   const sheet = new ServerStyleSheet();
-  const layoutHTML = renderToString(sheet.collectStyles(<Layout />));
+  const outputHTML = renderToString(sheet.collectStyles(<App />));
   return (
     "<!DOCTYPE html>" + 
     renderToStaticMarkup(
@@ -18,7 +16,7 @@ export function render(data: AppStatusData) {
       <head>
           <meta charSet="UTF-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <title>YuuLog</title>
+          <title>Writa</title>
           <link rel="canonical" href="https://www.tokisakiyuu.com" />
           <meta name="application-name" content="HTML Template" />
           <meta name="author" content="Tokisaki Yuu" />
@@ -38,7 +36,7 @@ export function render(data: AppStatusData) {
           {sheet.getStyleElement()}
       </head>
       <body>
-          <main id="root" dangerouslySetInnerHTML={{__html: layoutHTML}}></main>
+          <main id="root" dangerouslySetInnerHTML={{__html: outputHTML}}></main>
       </body>
       <script type="text/javascript" dangerouslySetInnerHTML={{__html: `var _DATA_=${JSON.stringify(data)}`}} />
       <script type="text/javascript" src="/index.js" />

@@ -1,13 +1,7 @@
 import path from "path";
 import Webpack from "webpack";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import CopyPlugin from "copy-webpack-plugin";
 
-interface Environment {
-  [name: string]: string;
-}
-
-const base: Webpack.Configuration = {
+const config: Webpack.Configuration = {
   module: {
     rules: [
       {
@@ -15,40 +9,33 @@ const base: Webpack.Configuration = {
         use: ["babel-loader"]
       },
       {
-        test: /\.less$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "less-loader"]
+        test: /\.(gif|png|jpg|woff|svg|ttf|eot)$/ ,
+        use:[{
+          loader: "url-loader",
+          options: {
+            limit: 1024 * 100,
+            outputPath: "public/static",
+            name: "[name].[hash:8].[ext]"
+          }
+        }]
       }
     ]
   },
   resolve: {
-    extensions: [".js", ".jsx", ".ts", ".tsx", ".less"],
+    extensions: [".js", ".jsx", ".ts", ".tsx", ".gif", ".png", ".jpg", ".woff", ".svg", ".ttf", ".eot"],
+  },
+  mode: "development",
+  devtool: "source-map",
+  entry: path.resolve(__dirname, "src/view/Layout/index.tsx"),
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    library: "Writa",
+    libraryTarget: "umd",
+    filename: "public/app.js",
+    globalObject: "this"
   }
 };
 
-export default function configFunc(env: Environment): Webpack.Configuration[] {
-  const mode = env.NODE_ENV === "production"? "production" : "development";
-  const devtool = mode === "development" ? "inline-source-map" : "eval";
-  return [{
-    // react client
-    ...base,
-    mode,
-    devtool,
-    entry: path.resolve(__dirname, "./src/site/client.tsx"),
-    output: {
-      path: path.resolve(__dirname, "./dist/site/_public"),
-      library: "YuuLib",
-      libraryTarget: "umd",
-      filename: "index.js",
-    },
-    plugins: [
-      new CopyPlugin({
-        patterns: [
-          {
-            from: path.resolve(__dirname, "./src/site/theme/static"),
-            to: path.resolve(__dirname, "./dist/site/_public")
-          },
-        ],
-      })
-    ]
-  }];
-}
+export default config;
+
+

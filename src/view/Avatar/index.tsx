@@ -6,7 +6,7 @@ const Avatar: FC<{
 }> = ({ className }) => (
   <div className={className}>
     <div className="avatar-img">
-      <img src="/avatar.png" />
+      <img src={require("../_static/avatar.png")} />
     </div>
     <h2 className="username">Writa</h2>
   </div>

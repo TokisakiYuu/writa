@@ -1,7 +1,6 @@
 import { Next } from "koa";
 import { RouterContext } from "koa-router";
-import { render } from "../site/server";
-import { AppStatusData } from "../site/store";
+import { render } from "../config/html";
 
 /**
  * SPA Page
@@ -14,7 +13,7 @@ export const spaEnterPoint = function(options?: SpaEnterPointOptions) {
       if(exclude.includes(ctx.path)) return next();
     }
     
-    const data = { currentView: "welcome" } as AppStatusData;
+    const data = { currentView: "welcome" };
     ctx.type = "html";
     ctx.body = render(data);
   };
